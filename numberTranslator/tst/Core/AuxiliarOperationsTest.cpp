@@ -25,6 +25,11 @@ TEST(AuxiliarOperationTest, readFile)
 	EXPECT_EQ(expected_content, file_content);
 }
 
+TEST(AuxiliarOperationTest, readFileException)
+{
+	EXPECT_ANY_THROW(read_file("unexistingFile.txt"));
+}
+
 TEST(AuxiliarOperationTest, sliceTextIntoSentences)
 {
 	std::string text{"Hello. Hello World. Are you hungry.."};

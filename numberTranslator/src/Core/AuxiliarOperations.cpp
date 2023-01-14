@@ -20,7 +20,7 @@ namespace core
 	    return lowercase_word;
 	}
 
-	std::string read_file(const std::string& fileName)
+	std::string read_file(const std::string& fileName) noexcept(false)
 	{
 		std::string file_content{};
 
@@ -28,7 +28,7 @@ namespace core
 
 		if(!infile.is_open())
 		{
-			std::cerr<<"Unable to open the file. \n";
+			throw("Unable to open the file. \n");
 			return file_content;
 		}
 
