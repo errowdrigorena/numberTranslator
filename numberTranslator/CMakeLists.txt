@@ -18,19 +18,21 @@ FetchContent_MakeAvailable(googletest)
 project (numberTranslator)
 include_directories(include)
 
-add_executable(NumberTranslator "")
 add_subdirectory(src)
-
-##tests
-enable_testing()
-
-add_executable(NumberTranslatorTest "")
 add_subdirectory(tst)
 
-target_link_libraries(NumberTranslatorTest GTest::gtest_main)
+add_executable(NumberTranslator "${CMAKE_CURRENT_SOURCE_DIR}/src/numberTranslator.cpp")
+target_link_libraries(NumberTranslator PRIVATE Core)
+
+enable_testing()
+#Maybe not the best idea
+add_executable(NumberTranslatorTest "${CMAKE_CURRENT_SOURCE_DIR}/tst/numberTranslatorTest.cpp"
+									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/NonComposablesTest.cpp")
+target_link_libraries(NumberTranslatorTest 
+	PRIVATE 
+		GTest::gtest_main 
+		Core)
+#target_link_libraries(NumberTranslatorTest PRIVATE Core)
 
 include(GoogleTest)
 gtest_discover_tests(NumberTranslatorTest)
-
-
-
