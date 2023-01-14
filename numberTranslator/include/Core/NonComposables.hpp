@@ -14,7 +14,7 @@ namespace core
 {
 	int dummyOne();
 
-	int translate_units(std::string word);
+	char translate_units(const std::string& word);
 }
 
 #endif /* INCLUDE_CORE_NONCOMPOSABLES_HPP_ */

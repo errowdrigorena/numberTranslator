@@ -5,6 +5,7 @@
  *      Author: iban
  */
 #include<Core/NonComposables.hpp>
+#include<unordered_map>
 
 namespace core
 {
@@ -13,9 +14,30 @@ namespace core
 		return 1;
 	}
 
-	int translate_units(std::string word)
+	char translate_units(const std::string& word)
 	{
-		return -1;
+		static const std::unordered_map<std::string, char> units_to_numerical{
+			{"one", '1'},
+			{"two", '2'},
+			{"three", '3'},
+			{"four", '4'},
+			{"five", '5'},
+			{"six", '6'},
+			{"seven", '7'},
+			{"eight", '8'},
+			{"nine", '9'}
+		};
+
+		static const char no_translatable{0 };
+		char output = no_translatable;
+
+		auto it = units_to_numerical.find(word);
+		if( it != units_to_numerical.end() )
+		{
+			output = it->second;
+		}
+
+		return output;
 	}
 
 }
