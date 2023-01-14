@@ -15,7 +15,7 @@ namespace core
 {
 	std::string convert_to_lowercase(const std::string& word);
 
-	std::vector<std::string> read_file_line_by_line(const std::string& fileName);
+	std::string read_file(const std::string& fileName);
 }
 
 

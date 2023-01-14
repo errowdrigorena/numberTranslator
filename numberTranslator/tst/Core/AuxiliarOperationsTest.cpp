@@ -20,9 +20,9 @@ TEST(AuxiliarOperationTest, lowerConversion)
 
 TEST(AuxiliarOperationTest, readFile)
 {
-	auto file_line_by_line = read_file_line_by_line("abc.txt");
-	//EXPECT_EQ("hello", hello);
-	EXPECT_EQ(true, false);
+	std::string  file_content = read_file("AuxiliarFiles/test_line_by_line.txt");
+	std::string expected_content{"abc.dfg hij!k?.mnñ." };
+	EXPECT_EQ(expected_content, file_content);
 }
 
 }

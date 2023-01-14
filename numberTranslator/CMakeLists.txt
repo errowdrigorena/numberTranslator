@@ -24,6 +24,9 @@ add_subdirectory(tst)
 add_executable(NumberTranslator "${CMAKE_CURRENT_SOURCE_DIR}/src/numberTranslator.cpp")
 target_link_libraries(NumberTranslator PRIVATE Core)
 
+#tests
+#copy test auxiliars
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/tst/AuxiliarFiles" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 enable_testing()
 #Maybe not the best idea
 add_executable(NumberTranslatorTest "${CMAKE_CURRENT_SOURCE_DIR}/tst/numberTranslatorTest.cpp"

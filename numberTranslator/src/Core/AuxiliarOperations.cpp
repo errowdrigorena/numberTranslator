@@ -20,19 +20,29 @@ namespace core
 	    return lowercase_word;
 	}
 
-	std::vector<std::string> read_file_line_by_line(const std::string& fileName)
+	std::string read_file(const std::string& fileName)
 	{
-		std::vector<std::string> file_lines{};
+		std::string file_content{};
 
 		std::ifstream infile(fileName);
 
 		if(!infile.is_open())
 		{
 			std::cerr<<"Unable to open the file. \n";
-			return file_lines;
+			return file_content;
 		}
 
-		return file_lines;
+		std::string line;
+		while(getline(infile, line))
+		{
+			std::cout<<line<<std::endl;
+			file_content.append(line);
+		}
+
+		std::cout<<"FILE CONTENT IS" << std::endl;
+		std::cout << file_content << std::endl;
+
+		return file_content;
 	}
 }
 
