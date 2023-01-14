@@ -25,9 +25,12 @@ public:
 
 TEST_P(Units_fixture_test, WordToUnitTest)
 {
-  auto [word, expected_translation, is_correct_translation] = GetParam();
+  auto word_translation_result = GetParam();
+  auto word_to_test = std::get<0>(word_translation_result);
+  auto expected_translation = std::get<1>(word_translation_result);
+  auto is_correct_translation = std::get<2>(word_translation_result);
 
-  auto result = translate_units(word);
+  auto result = translate_units(word_to_test);
 
   if(is_correct_translation)
   {

@@ -3,7 +3,7 @@
 #include <string.h>
 
 void start_translation(std::string input_file_name,
-		std::optional<std::string> output_file_name = {});
+		std::string output_file_name = {});
 void provide_help();
 void inform_error();
 
@@ -38,13 +38,13 @@ int main(int argc, char **argv)
 }
 
 void start_translation(std::string input_file_name,
-		std::optional<std::string> output_file_name)
+		std::string output_file_name)
 {
 	std::cout << "The translation is in process. \n";
 	//todo implement
-	if(output_file_name)
+	if(!output_file_name.empty())
 	{
-		std::cout << "output file is: " << output_file_name->c_str() << ". \n";
+		std::cout << "output file is: " << output_file_name << ". \n";
 	}
 	else
 	{
