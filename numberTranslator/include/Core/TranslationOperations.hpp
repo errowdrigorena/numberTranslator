@@ -14,6 +14,9 @@ namespace core
 {
 	//output is an ASCII code number for (1-9). 0 if senseless translation
 	char translate_units(const std::string& word);
+
+	//output is an ASCII code number for (10-19). Empty if senseless translation
+	std::string translate_teens(const std::string& word);
 }
 
 #endif /* INCLUDE_CORE_TRANSLATIONOPERATIONS_HPP_ */

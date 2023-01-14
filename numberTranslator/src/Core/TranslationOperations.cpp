@@ -11,6 +11,12 @@
 
 namespace core
 {
+	template<typename T>
+	T translate(const std::string& key, const std::unordered_map<std::string, T> dictionary);
+}
+
+namespace core
+{
 	char translate_units(const std::string& word)
 	{
 		static const std::unordered_map<std::string, char> units_to_numerical{
@@ -25,18 +31,43 @@ namespace core
 			{"nine", '9'}
 		};
 
-		static const char no_translatable{0 };
-		char output = no_translatable;
+		return translate(word, units_to_numerical);
+	}
 
-		auto lowercase_word = convert_to_lowercase(word);
-		auto it = units_to_numerical.find(lowercase_word);
-		if( it != units_to_numerical.end() )
+	template<typename T>
+	T translate(const std::string& key, const std::unordered_map<std::string, T> dictionary)
+	{
+		T no_translatable{};
+		T output = no_translatable;
+
+		auto lowercase_key = convert_to_lowercase(key);
+		auto it = dictionary.find(lowercase_key);
+		if( it != dictionary.end() )
 		{
 			output = it->second;
 		}
 
 		return output;
 	}
+
+	std::string translate_teens(const std::string& word)
+	{
+		static const std::unordered_map<std::string, std::string> teens_to_numerical{
+			{"ten", "10"},
+			{"eleven", "11"},
+			{"twelve", "12"},
+			{"thirteen", "13"},
+			{"fourteen", "14"},
+			{"fifteen", "15"},
+			{"sixteen", "16"},
+			{"seventeen", "17"},
+			{"eighteen", "18"},
+			{"nineteen", "19"}
+		};
+
+		return translate(word, teens_to_numerical);
+	}
+
 
 }
 
