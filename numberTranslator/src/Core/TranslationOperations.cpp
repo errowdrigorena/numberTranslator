@@ -4,10 +4,11 @@
  *  Created on: Jan 13, 2023
  *      Author: iban
  */
-#include<Core/AuxiliarOperations.hpp>
+#include <Core/AuxiliarOperations.hpp>
 #include <Core/TranslationOperations.hpp>
 
-#include<unordered_map>
+#include <unordered_map>
+#include <iostream> //delete
 
 namespace core
 {
@@ -81,7 +82,9 @@ namespace core
 			{"ninety", '9'}
 		};
 
-		return translate(word, decimals_to_numerical);
+		auto output = translate(word, decimals_to_numerical);
+		std::cout << "translate decimal " << output << std::endl; //delete
+		return output;
 	}
 
 }

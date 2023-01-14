@@ -29,14 +29,14 @@ target_link_libraries(NumberTranslator PRIVATE Core)
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/tst/AuxiliarFiles" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 enable_testing()
 #Maybe not the best idea
-add_executable(NumberTranslatorTest "${CMAKE_CURRENT_SOURCE_DIR}/tst/numberTranslatorTest.cpp"
-									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/TranslationOperationsTest.cpp"
-									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/AuxiliarOperationsTest.cpp")
-target_link_libraries(NumberTranslatorTest 
+add_executable(NumberTranslatorTestCore "${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/TranslationOperationsTest.cpp"
+									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/AuxiliarOperationsTest.cpp"
+									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/NumberCompositionHandlerTest.cpp")
+target_link_libraries(NumberTranslatorTestCore 
 	PRIVATE 
 		GTest::gtest_main 
 		Core)
 #target_link_libraries(NumberTranslatorTest PRIVATE Core)
 
 include(GoogleTest)
-gtest_discover_tests(NumberTranslatorTest)
+gtest_discover_tests(NumberTranslatorTestCore)
