@@ -44,6 +44,11 @@ namespace core
 
 		return file_content;
 	}
+
+	std::vector<std::string> get_sentences(const std::string& text)
+	{
+		return{};
+	}
 }
 
 
