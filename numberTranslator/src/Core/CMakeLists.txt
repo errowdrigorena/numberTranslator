@@ -1,3 +1,3 @@
-add_library(Core NonComposables.cpp AuxiliarOperations.cpp)
+add_library(Core TranslationOperations.cpp AuxiliarOperations.cpp)
 
 target_include_directories(Core PUBLIC include)

@@ -30,7 +30,7 @@ file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/tst/AuxiliarFiles" DESTINATION "${CMAKE_C
 enable_testing()
 #Maybe not the best idea
 add_executable(NumberTranslatorTest "${CMAKE_CURRENT_SOURCE_DIR}/tst/numberTranslatorTest.cpp"
-									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/NonComposablesTest.cpp"
+									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/TranslationOperationsTest.cpp"
 									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/AuxiliarOperationsTest.cpp")
 target_link_libraries(NumberTranslatorTest 
 	PRIVATE 

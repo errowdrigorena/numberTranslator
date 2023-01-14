@@ -4,18 +4,13 @@
  *  Created on: Jan 13, 2023
  *      Author: iban
  */
-#include<Core/NonComposables.hpp>
 #include<Core/AuxiliarOperations.hpp>
+#include <Core/TranslationOperations.hpp>
 
 #include<unordered_map>
 
 namespace core
 {
-	int dummyOne()
-	{
-		return 1;
-	}
-
 	char translate_units(const std::string& word)
 	{
 		static const std::unordered_map<std::string, char> units_to_numerical{

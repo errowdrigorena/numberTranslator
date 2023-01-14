@@ -5,17 +5,15 @@
  *      Author: iban
  */
 
-#ifndef INCLUDE_CORE_NONCOMPOSABLES_HPP_
-#define INCLUDE_CORE_NONCOMPOSABLES_HPP_
+#ifndef INCLUDE_CORE_TRANSLATIONOPERATIONS_HPP_
+#define INCLUDE_CORE_TRANSLATIONOPERATIONS_HPP_
 
 #include <string>
 
 namespace core
 {
-	int dummyOne();
-
-	//output is an ASCII code number. 0 if senseless translation
+	//output is an ASCII code number for (1-9). 0 if senseless translation
 	char translate_units(const std::string& word);
 }
 
-#endif /* INCLUDE_CORE_NONCOMPOSABLES_HPP_ */
+#endif /* INCLUDE_CORE_TRANSLATIONOPERATIONS_HPP_ */

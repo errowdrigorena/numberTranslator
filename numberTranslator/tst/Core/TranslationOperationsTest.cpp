@@ -5,16 +5,12 @@
  *      Author: iban
  */
 
-#include <Core/NonComposables.hpp>
+#include <Core/TranslationOperations.hpp>
 #include <gtest/gtest.h>
 #include <tuple>
 
 namespace core
 {
-
-TEST(NonComposableTest, BasicAssertions) {
-	EXPECT_EQ(1, dummyOne());
-}
 
 using Word_translation_result = std::tuple<std::string, char, bool>;
 
