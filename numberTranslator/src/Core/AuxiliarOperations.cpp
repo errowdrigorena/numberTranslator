@@ -35,19 +35,31 @@ namespace core
 		std::string line;
 		while(getline(infile, line))
 		{
-			std::cout<<line<<std::endl;
 			file_content.append(line);
 		}
-
-		std::cout<<"FILE CONTENT IS" << std::endl;
-		std::cout << file_content << std::endl;
 
 		return file_content;
 	}
 
 	std::vector<std::string> get_sentences(const std::string& text)
 	{
-		return{};
+		std::vector<std::string> sentences{};
+		const char period_character{'.'};
+
+		auto it_begin_position = text.begin();
+		auto period_position = std::find(it_begin_position, text.end(),period_character);
+
+		while(period_position != text.end())
+		{
+			std::string sentence{it_begin_position, period_position};
+			sentences.push_back(sentence);
+
+			it_begin_position = std::find_if(period_position + 1, text.end(), [](char input){return ' ' != input;});
+			period_position = std::find(it_begin_position, text.end(),period_character);
+		}
+
+
+		return sentences;
 	}
 }
 

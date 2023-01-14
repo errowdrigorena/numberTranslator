@@ -27,9 +27,9 @@ TEST(AuxiliarOperationTest, readFile)
 
 TEST(AuxiliarOperationTest, sliceTextIntoSentences)
 {
-	std::string text{"Hello. Hello World. Are you hungry."};
+	std::string text{"Hello. Hello World. Are you hungry.."};
 	auto text_in_sentences = get_sentences(text);
-	std::vector<std::string> expected_content{{"Hello"}, {"Hello World"}, {"Are you hungry"} };
+	std::vector<std::string> expected_content{{"Hello"}, {"Hello World"}, {"Are you hungry"},{} };
 	EXPECT_EQ(expected_content, text_in_sentences);
 }
 
