@@ -2,8 +2,7 @@
 #include <optional>
 #include <string.h>
 
-void start_translation(std::string input_file_name,
-		std::string output_file_name = {});
+void start_translation(std::string input_file_name, std::string output_file_name = {});
 void provide_help();
 void inform_error();
 
@@ -37,8 +36,7 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-void start_translation(std::string input_file_name,
-		std::string output_file_name)
+void start_translation(std::string input_file_name, std::string output_file_name)
 {
 	std::cout << "The translation is in process. \n";
 	//todo implement
