@@ -8,13 +8,17 @@
 #ifndef INCLUDE_CORE_TRANSLATOR_HPP_
 #define INCLUDE_CORE_TRANSLATOR_HPP_
 
-#include <filesystem>
+#include <string>
+
+namespace core
+{
 
 class Translator
 {
-	explicit Translator(std::string)
+public:
+	explicit Translator(std::string inputFileName, std::string outputFileName={});
 };
 
-
+}
 
 #endif /* INCLUDE_CORE_TRANSLATOR_HPP_ */

@@ -27,7 +27,8 @@ target_link_libraries(NumberTranslator PRIVATE Core)
 enable_testing()
 #Maybe not the best idea
 add_executable(NumberTranslatorTest "${CMAKE_CURRENT_SOURCE_DIR}/tst/numberTranslatorTest.cpp"
-									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/NonComposablesTest.cpp")
+									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/NonComposablesTest.cpp"
+									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/AuxiliarOperationsTest.cpp")
 target_link_libraries(NumberTranslatorTest 
 	PRIVATE 
 		GTest::gtest_main 
