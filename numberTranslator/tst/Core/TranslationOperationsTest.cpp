@@ -52,6 +52,43 @@ INSTANTIATE_TEST_CASE_P(AllUnits, Units_fixture_test, testing::Values(
 		std::make_tuple("apple", '1', false)
 ));
 
+class Decimals_fixture_test : public testing::TestWithParam<Word_translation_result>
+{
+public:
+};
+
+TEST_P(Decimals_fixture_test, WordToDecimalTest)
+{
+  auto word_translation_result = GetParam();
+  auto word_to_test = std::get<0>(word_translation_result);
+  auto expected_translation = std::get<1>(word_translation_result);
+  auto is_correct_translation = std::get<2>(word_translation_result);
+
+  auto result = translate_decimals(word_to_test);
+
+  if(is_correct_translation)
+  {
+	  ASSERT_EQ(result, expected_translation);
+  }
+  else
+  {
+	  ASSERT_NE(result, expected_translation);
+  }
+}
+
+INSTANTIATE_TEST_CASE_P(AllDecimals, Decimals_fixture_test, testing::Values(
+		std::make_tuple("a", 0, true),
+		std::make_tuple("twenty", '2', true),
+		std::make_tuple("Thirty", '3',true),
+		std::make_tuple("FortY", '4', true),
+		std::make_tuple("FiFty", '5', true),
+		std::make_tuple("SiXtY", '6',true),
+		std::make_tuple("Seventy", '7', true),
+		std::make_tuple("Eighty", '8', true),
+		std::make_tuple("ninety", '9', true),
+		std::make_tuple("apple", '1', false)
+));
+
 using Word_translationstring_result = std::tuple<std::string, std::string, bool>;
 
 class Teens_fixture_test : public testing::TestWithParam<Word_translationstring_result>
