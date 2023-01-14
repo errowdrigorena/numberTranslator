@@ -9,6 +9,7 @@
 #define INCLUDE_CORE_TRANSLATOR_HPP_
 
 #include <string>
+#include <vector>
 
 namespace core
 {
@@ -16,7 +17,13 @@ namespace core
 class Translator
 {
 public:
-	explicit Translator(std::string inputFileName, std::string outputFileName={});
+	explicit Translator(const std::string& inputFileName);
+
+	std::string get_translated_text() const;
+
+private:
+	std::vector<std::string> sentences_;
+	std::string translated_text_;
 };
 
 }

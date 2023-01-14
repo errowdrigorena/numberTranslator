@@ -5,9 +5,11 @@
  *      Author: iban
  */
 #include <Core/AuxiliarOperations.hpp>
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
 
 namespace core
 {
@@ -28,7 +30,7 @@ namespace core
 
 		if(!infile.is_open())
 		{
-			throw("Unable to open the file. \n");
+			throw(std::invalid_argument("Unable to open the file. \n"));
 			return file_content;
 		}
 
