@@ -5,6 +5,8 @@
  *      Author: iban
  */
 #include<Core/NonComposables.hpp>
+#include<Core/AuxiliarOperations.hpp>
+
 #include<unordered_map>
 
 namespace core
@@ -31,7 +33,8 @@ namespace core
 		static const char no_translatable{0 };
 		char output = no_translatable;
 
-		auto it = units_to_numerical.find(word);
+		auto lowercase_word = convert_to_lowercase(word);
+		auto it = units_to_numerical.find(lowercase_word);
 		if( it != units_to_numerical.end() )
 		{
 			output = it->second;

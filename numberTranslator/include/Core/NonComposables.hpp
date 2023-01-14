@@ -14,6 +14,7 @@ namespace core
 {
 	int dummyOne();
 
+	//output is an ASCII code number. 0 if senseless translation
 	char translate_units(const std::string& word);
 }
 
