@@ -12,6 +12,12 @@ namespace core
 	{
 		return 1;
 	}
+
+	int translate_units(std::string word)
+	{
+		return -1;
+	}
+
 }
 
 
