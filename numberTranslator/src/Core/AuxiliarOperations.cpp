@@ -61,6 +61,28 @@ namespace core
 
 		return sentences;
 	}
+
+	std::vector<std::string> get_words(const std::string& sentence)
+	{
+		std::vector<std::string> words{};
+
+		auto it_begin_word = std::find_if(sentence.begin(), sentence.end(), [](char input){return ' ' != input;});
+		auto it_end_word = std::find_if(it_begin_word, sentence.end(), [](char input){return ' ' == input;});
+
+		while(it_end_word != sentence.end())
+		{
+			std::string word{it_begin_word, it_end_word};
+			words.push_back(word);
+
+			it_begin_word = std::find_if(it_end_word, sentence.end(), [](char input){return ' ' != input;});
+			it_end_word = std::find_if(it_begin_word, sentence.end(), [](char input){return ' ' == input;});
+		}
+
+		std::string word{it_begin_word, sentence.end()};
+		words.push_back(word);
+
+		return words;
+	}
 }
 
 

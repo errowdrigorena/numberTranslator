@@ -18,6 +18,8 @@ namespace core
 	std::string read_file(const std::string& fileName);
 
 	std::vector<std::string> get_sentences(const std::string& text);
+
+	std::vector<std::string> get_words(const std::string& sentence);
 }
 
 

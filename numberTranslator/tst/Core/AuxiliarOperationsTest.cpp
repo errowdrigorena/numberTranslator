@@ -21,6 +21,7 @@ TEST(AuxiliarOperationTest, lowerConversion)
 TEST(AuxiliarOperationTest, readFile)
 {
 	auto file_content = read_file("AuxiliarFiles/test_line_by_line.txt");
+
 	std::string expected_content{"abc.dfg hij!k?.mnñ." };
 	EXPECT_EQ(expected_content, file_content);
 }
@@ -34,8 +35,18 @@ TEST(AuxiliarOperationTest, sliceTextIntoSentences)
 {
 	std::string text{"Hello. Hello World. Are you hungry.."};
 	auto text_in_sentences = get_sentences(text);
+
 	std::vector<std::string> expected_content{{"Hello"}, {"Hello World"}, {"Are you hungry"},{} };
 	EXPECT_EQ(expected_content, text_in_sentences);
+}
+
+TEST(AuxiliarOperationTest, sliceSentenceIntoWords)
+{
+	std::string text{"Hello World today is a beautiful day"};
+	auto sentence_in_words = get_words(text);
+
+	std::vector<std::string> expected_content{{"Hello"}, {"World"}, {"today"}, {"is"}, {"a"}, {"beautiful"}, {"day"} };
+	EXPECT_EQ(expected_content, sentence_in_words);
 }
 
 }
