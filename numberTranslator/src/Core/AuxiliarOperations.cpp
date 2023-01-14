@@ -6,16 +6,33 @@
  */
 #include <Core/AuxiliarOperations.hpp>
 #include <algorithm>
+#include <fstream>
+#include <iostream>
 
 namespace core
 {
 	std::string convert_to_lowercase(const std::string& word)
 	{
-		std::string output{};
+		std::string lowercase_word{};
 
-	    std::transform(word.begin(), word.end(), std::back_inserter(output), ::tolower );
+	    std::transform(word.begin(), word.end(), std::back_inserter(lowercase_word), ::tolower );
 
-	    return output;
+	    return lowercase_word;
+	}
+
+	std::vector<std::string> read_file_line_by_line(const std::string& fileName)
+	{
+		std::vector<std::string> file_lines{};
+
+		std::ifstream infile(fileName);
+
+		if(!infile.is_open())
+		{
+			std::cerr<<"Unable to open the file. \n";
+			return file_lines;
+		}
+
+		return file_lines;
 	}
 }
 
