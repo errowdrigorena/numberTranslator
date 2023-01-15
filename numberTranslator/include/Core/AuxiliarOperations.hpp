@@ -20,6 +20,10 @@ namespace core
 	std::vector<std::string> get_sentences(const std::string& text);
 
 	std::vector<std::string> get_words(const std::string& sentence);
+
+	bool is_hundred(std::string& word);
+
+	bool is_and(std::string& word);
 }
 
 

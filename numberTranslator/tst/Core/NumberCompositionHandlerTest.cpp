@@ -69,4 +69,67 @@ TEST_F(NumberCompositionHandlerTestFixture, decimalAfterUnitNumber)
   ASSERT_EQ("2 40 women shopping.", translateSentence(sentence));
 }
 
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredNumber)
+{
+  std::vector<std::string> sentence{{"I"}, {"have"}, {"one"}, {"hundred"}, {"apples"}};
+
+  ASSERT_EQ("I have 100 apples.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredAndUnitNumber)
+{
+  std::vector<std::string> sentence{{"One"}, {"hundred"}, {"and"}, {"one"}};
+
+  ASSERT_EQ("101.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredUnitNumber)
+{
+  std::vector<std::string> sentence{{"One"}, {"hundred"}, {"one"}};
+
+  ASSERT_EQ("100 1.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredDecimalNumber)
+{
+  std::vector<std::string> sentence{{"Two"}, {"hundred"}, {"forty"}};
+
+  ASSERT_EQ("200 40.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredAndDecimalNumber)
+{
+  std::vector<std::string> sentence{{"Two"}, {"hundred"}, {"and"}, {"forty"}};
+
+  ASSERT_EQ("240.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitGuidonDecimalNumbers)
+{
+  std::vector<std::string> sentence{{"Two"}, {"sixty-six"}};
+
+  ASSERT_EQ("2 66.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, guidonDecimalUnitNumbers)
+{
+  std::vector<std::string> sentence{{"sixty-six"}, {"Two"}};
+
+  ASSERT_EQ("66 2.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredAndGuidonDecimalNumber)
+{
+  std::vector<std::string> sentence{{"Two"}, {"hundred"}, {"and"}, {"forty-eight"}};
+
+  ASSERT_EQ("248.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredGuidonDecimalNumber)
+{
+  std::vector<std::string> sentence{{"Two"}, {"hundred"}, {"forty-eight"}};
+
+  ASSERT_EQ("200 48.", translateSentence(sentence));
+}
+
 }

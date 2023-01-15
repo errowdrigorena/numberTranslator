@@ -85,6 +85,18 @@ namespace core
 
 		return words;
 	}
+
+	bool is_hundred(std::string& word)
+	{
+		auto word_lower = convert_to_lowercase(word);
+		return "hundred" == word;
+	}
+
+	bool is_and(std::string& word)
+	{
+		auto word_lower = convert_to_lowercase(word);
+		return "and" == word;
+	}
 }
 
 

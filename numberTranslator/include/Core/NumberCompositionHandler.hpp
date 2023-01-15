@@ -19,6 +19,7 @@ enum class Composition_operations
 	units,
 	decenes,
 	hundreds,
+	hundred_and,
 	millions,
 	billions,
 };
