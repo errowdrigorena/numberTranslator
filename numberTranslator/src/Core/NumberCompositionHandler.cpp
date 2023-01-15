@@ -204,7 +204,7 @@ void Number_composition_handler::compose_number(std::string word)
 	{
 		if( last_operation_ == Composition_operations::units )
 		{
-			composed_number_.append("000000");
+			composed_number_.append("000000000");
 			last_operation_ = Composition_operations::billions;
 			return;
 		}

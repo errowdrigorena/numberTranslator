@@ -89,31 +89,31 @@ namespace core
 	bool is_hundred(std::string& word)
 	{
 		auto word_lower = convert_to_lowercase(word);
-		return "hundred" == word;
+		return "hundred" == word_lower;
 	}
 
 	bool is_and(std::string& word)
 	{
 		auto word_lower = convert_to_lowercase(word);
-		return "and" == word;
+		return "and" == word_lower;
 	}
 
 	bool is_thowsand(std::string& word)
 	{
 		auto word_lower = convert_to_lowercase(word);
-		return "thowsand" == word;
+		return "thowsand" == word_lower;
 	}
 
 	bool is_million(std::string& word)
 	{
 		auto word_lower = convert_to_lowercase(word);
-		return "million" == word;
+		return "million" == word_lower;
 	}
 
 	bool is_billion(std::string& word)
 	{
 		auto word_lower = convert_to_lowercase(word);
-		return "billion" == word;
+		return "billion" == word_lower;
 	}
 }
 
