@@ -223,4 +223,32 @@ TEST_F(NumberCompositionHandlerTestFixture, unitThowsandAndUnitHundredNumber)
   ASSERT_EQ("3900.", translateSentence(sentence));
 }
 
+TEST_F(NumberCompositionHandlerTestFixture, unitThowsandAndUnitHundredAndTeenNumber)
+{
+  std::vector<std::string> sentence{{"Three"}, {"thowsand"}, {"and"}, {"nine"}, {"hundred"}, {"and"}, {"eleven"}};
+
+  ASSERT_EQ("3911.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, teenThowsandAndUnitHundredAndDecimalNumber)
+{
+  std::vector<std::string> sentence{{"Ten"}, {"thowsand"}, {"and"}, {"three"}, {"hundred"}, {"and"}, {"eighty"}};
+
+  ASSERT_EQ("10380.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, decimalThowsandAndUnitHundredAndGuidonDecimalNumber)
+{
+  std::vector<std::string> sentence{{"Fifty"}, {"thowsand"}, {"and"}, {"three"}, {"hundred"}, {"and"}, {"fifty-five"}};
+
+  ASSERT_EQ("50355.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitAndUnitNumbers)
+{
+	  std::vector<std::string> sentence{{"One"}, {"and"}, {"two"}};
+
+	  ASSERT_EQ("1 and 2.", translateSentence(sentence));
+}
+
 }

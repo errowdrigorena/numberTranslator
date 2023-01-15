@@ -14,7 +14,7 @@ namespace core
 {
 	bool is_decene_continuable(Composition_operations operation);
 	bool is_decene_and(Composition_operations operation);
-
+	bool is_thowsand_prefix(Composition_operations operation);
 }
 namespace core
 {
@@ -175,7 +175,7 @@ void Number_composition_handler::compose_number(std::string word)
 
 	if(is_thowsand(word))
 	{
-		if(last_operation_ == Composition_operations::units)
+		if( is_thowsand_prefix(last_operation_) )
 		{
 			composed_number_.append("000");
 			last_operation_ = Composition_operations::thowsands;
@@ -228,6 +228,14 @@ bool is_decene_and(Composition_operations operation)
 	return is_decene_and;
 }
 
+bool is_thowsand_prefix(Composition_operations operation)
+{
+	bool is_thowsand_prefix = operation == Composition_operations::units
+			|| operation == Composition_operations::decenes;
+
+	return is_thowsand_prefix;
+}
+
 void Number_composition_handler::force_writing_actual_composition(const std::string& word)
 {
 	insert_stored_numeric();
@@ -268,8 +276,12 @@ std::string Number_composition_handler::get_sentence_with_numbers()
 	for(auto& word : translated_word_sentence_)
 	{
 		sentence.append(word);
-		sentence.append(" ");
+		if( !word.empty() )
+		{
+			sentence.append(" ");
+		}
 	}
+
 	sentence.back() = '.';
 
 
