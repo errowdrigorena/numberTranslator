@@ -41,22 +41,17 @@ void Sentence_translator::compose_number(std::string word)
 	if( it_guidon != word.end() )
 	{
 		std::string first_half{word.begin(), it_guidon};
-		std::cout << first_half << std::endl;
 		auto translated_first_half = translate_decimals(first_half);
-		std::cout << translated_first_half << std::endl;
 
 		if(translated_first_half)
 		{
 			std::string second_half{it_guidon+1, word.end()};
-			std::cout << second_half << std::endl;
 			auto translated_second_half = translate_units(second_half);
-			std::cout << translated_second_half << std::endl;
+
 			if(translated_second_half)
 			{
 				if(!is_decene_continuable(last_operation_))
 				{
-					//clean operation
-					std::cout << "Previously units or hundreds" << std::endl;
 					force_writing_actual_composition(word);
 				}
 
@@ -85,32 +80,22 @@ void Sentence_translator::compose_number(std::string word)
 
 	if(translated_units)
 	{
-		std::cout << "Translate units " << translated_units << std::endl;
-
 		if(last_operation_ == Composition_operations::decenes
 				|| last_operation_ == Composition_operations::hundreds
 				|| last_operation_ == Composition_operations::thowsands
 				|| last_operation_ == Composition_operations::units
 				|| last_operation_ == Composition_operations::millions)
 		{
-			std::cout << "Previously decenes, hundreds or thowsands or millions" << std::endl;
 			force_writing_actual_composition(word);
 		}
 
 		if(last_operation_ != Composition_operations::none)
 		{
 			composed_number_.pop_back();
-			std::cout << "Composed number now is" << composed_number_ << std::endl;
 		}
 
 		composed_number_.push_back(translated_units);
 		last_operation_ = Composition_operations::units;
-
-		std::cout << "WORDS WE HAVE" << std::endl;
-		for(auto word : original_word_sentence_)
-		{
-			std::cout << word << std::endl;
-		}
 
 		return;
 	}
@@ -121,9 +106,7 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if(!is_decene_continuable(last_operation_))
 		{
-			std::cout << "Previously units or hundreds" << std::endl;
 			force_writing_actual_composition(word);
-
 		}
 
 		if(is_decene_and(last_operation_))
@@ -142,10 +125,8 @@ void Sentence_translator::compose_number(std::string word)
 
 	if(!translated_teens.empty()) //funciona como decimals si se le pasa una cadena a estos
 	{
-		std::cout << translated_teens << std::endl;
 		if(!is_decene_continuable(last_operation_))
 		{
-			std::cout << "Previously units or hundreds" << std::endl;
 			force_writing_actual_composition(word);
 		}
 
@@ -247,10 +228,6 @@ void Sentence_translator::compose_number(std::string word)
 		return;
 	}
 
-
-	//translated_word_sentence_.push_back(composed_number_);
-	std::cout << "The non numerical word is " << word << std::endl;
-	auto it = std::find(original_word_sentence_.begin(), original_word_sentence_.end(), word);
 	insert_stored_numeric();
 
 	if(is_insert_and)
@@ -304,8 +281,6 @@ bool Sentence_translator::is_composed() const
 
 void Sentence_translator::insert_stored_numeric()
 {
-	std::cout << "The first composed number: " << composed_number_ << std::endl;
-
 	translated_word_sentence_.push_back(composed_number_);
 
 	composed_number_.clear();
