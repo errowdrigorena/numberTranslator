@@ -19,7 +19,6 @@
 #include <Core/DefaultTranslationCommand.hpp>
 
 #include <algorithm>
-#include <iostream> //delete
 
 namespace core
 {
