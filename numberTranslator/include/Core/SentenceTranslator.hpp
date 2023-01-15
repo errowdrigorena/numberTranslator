@@ -5,8 +5,8 @@
  *      Author: iban
  */
 
-#ifndef INCLUDE_CORE_STATEMACHINE_NUMBER_COMPOSITION_HANDLER_HPP_
-#define INCLUDE_CORE_STATEMACHINE_NUMBER_COMPOSITION_HANDLER_HPP_
+#ifndef INCLUDE_CORE_SENTENCE_TRANSLATOR_HPP_
+#define INCLUDE_CORE_SSENTENCE_TRANSLATOR_HPP_
 
 #include <string>
 #include <vector>
@@ -28,10 +28,10 @@ enum class Composition_operations
 	billion_and
 };
 
-class Number_composition_handler
+class Sentence_translator
 {
 public:
-	Number_composition_handler(std::vector<std::string> word_sentence);
+	Sentence_translator(std::vector<std::string> word_sentence);
 
 	void compose_number(std::string number);
 

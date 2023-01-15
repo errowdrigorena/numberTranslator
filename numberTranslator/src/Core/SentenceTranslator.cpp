@@ -4,7 +4,8 @@
  *  Created on: Jan 14, 2023
  *      Author: iban
  */
-#include <Core/NumberCompositionHandler.hpp>
+#include "../../include/Core/SentenceTranslator.hpp"
+
 #include <Core/AuxiliarOperations.hpp>
 #include <Core/TranslationOperations.hpp>
 #include <algorithm>
@@ -15,18 +16,17 @@ namespace core
 	bool is_decene_continuable(Composition_operations operation);
 	bool is_decene_and(Composition_operations operation);
 	bool is_three_zero_multiple_prefix(Composition_operations operation);
-	bool is_million_prefix(Composition_operations operation);
 }
 namespace core
 {
 
-Number_composition_handler::Number_composition_handler(std::vector<std::string> word_sentence) : composed_number_{},
+Sentence_translator::Sentence_translator(std::vector<std::string> word_sentence) : composed_number_{},
 		original_word_sentence_{word_sentence}, translated_word_sentence_{}, last_operation_{Composition_operations::none}
 {
 
 }
 
-void Number_composition_handler::compose_sentence()
+void Sentence_translator::compose_sentence()
 {
   for(auto& word : original_word_sentence_)
   {
@@ -34,7 +34,7 @@ void Number_composition_handler::compose_sentence()
   }
 }
 
-void Number_composition_handler::compose_number(std::string word)
+void Sentence_translator::compose_number(std::string word)
 {
 	auto it_guidon = std::find(word.begin(), word.end(), '-');
 
@@ -291,18 +291,18 @@ bool is_three_zero_multiple_prefix(Composition_operations operation)
 	return is_thowsand_prefix;
 }
 
-void Number_composition_handler::force_writing_actual_composition(const std::string& word)
+void Sentence_translator::force_writing_actual_composition(const std::string& word)
 {
 	insert_stored_numeric();
 	last_operation_ = Composition_operations::none;
 }
 
-bool Number_composition_handler::is_composed() const
+bool Sentence_translator::is_composed() const
 {
 	return false;
 }
 
-void Number_composition_handler::insert_stored_numeric()
+void Sentence_translator::insert_stored_numeric()
 {
 	std::cout << "The first composed number: " << composed_number_ << std::endl;
 
@@ -311,7 +311,7 @@ void Number_composition_handler::insert_stored_numeric()
 	composed_number_.clear();
 }
 
-void Number_composition_handler::force_last_numerics()
+void Sentence_translator::force_last_numerics()
 {
 	if(composed_number_.empty())
 	{
@@ -321,7 +321,7 @@ void Number_composition_handler::force_last_numerics()
 	insert_stored_numeric();
 }
 
-std::string Number_composition_handler::get_sentence_with_numbers()
+std::string Sentence_translator::get_sentence_with_numbers()
 {
 	std::string sentence{};
 
