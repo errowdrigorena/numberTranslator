@@ -202,4 +202,19 @@ TEST_F(NumberCompositionHandlerTestFixture, decimalDecimalGuidonDecimalTeenNumbe
   ASSERT_EQ("30 90 99 19.", translateSentence(sentence));
 }
 
+TEST_F(NumberCompositionHandlerTestFixture, unitThowsandTeenNumber)
+{
+  std::vector<std::string> sentence{{"Three"}, {"thowsand"}, {"ten"}};
+
+  ASSERT_EQ("3000 10.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitThowsandAndTeenNumber)
+{
+  std::vector<std::string> sentence{{"Three"}, {"thowsand"}, {"and"}, {"ten"}};
+
+  ASSERT_EQ("3010.", translateSentence(sentence));
+}
+
+
 }

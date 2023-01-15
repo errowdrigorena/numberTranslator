@@ -13,6 +13,8 @@
 namespace core
 {
 	bool is_decene_continuable(Composition_operations operation);
+	bool is_decene_and(Composition_operations operation);
+
 }
 namespace core
 {
@@ -58,7 +60,7 @@ void Number_composition_handler::compose_number(std::string word)
 				}
 
 
-				if(last_operation_ == Composition_operations::hundred_and)
+				if(is_decene_and(last_operation_))
 				{
 					composed_number_.erase(composed_number_.end()-2, composed_number_.end());
 				}
@@ -122,7 +124,7 @@ void Number_composition_handler::compose_number(std::string word)
 
 		}
 
-		if(last_operation_ == Composition_operations::hundred_and)
+		if(is_decene_and(last_operation_))
 		{
 			composed_number_.erase(composed_number_.end()-2, composed_number_.end());
 		}
@@ -145,7 +147,7 @@ void Number_composition_handler::compose_number(std::string word)
 			force_writing_actual_composition(word);
 		}
 
-		if(last_operation_ == Composition_operations::hundred_and)
+		if(is_decene_and(last_operation_))
 		{
 			composed_number_.erase(composed_number_.end()-2, composed_number_.end());
 		}
@@ -211,6 +213,14 @@ bool is_decene_continuable(Composition_operations operation)
 					|| operation == Composition_operations::thowsands;
 
 	return !is_not_decene_continuable;
+}
+
+bool is_decene_and(Composition_operations operation)
+{
+	bool is_decene_and = operation == Composition_operations::hundred_and
+			|| operation == Composition_operations::thowsand_and;
+
+	return is_decene_and;
 }
 
 void Number_composition_handler::force_writing_actual_composition(const std::string& word)
