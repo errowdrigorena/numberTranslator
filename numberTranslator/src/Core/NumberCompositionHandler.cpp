@@ -197,16 +197,35 @@ void Number_composition_handler::compose_number(std::string word)
 		}
 	}
 
+	bool is_insert_and{false };
+
+	if(is_decene_and(last_operation_))
+	{
+		is_insert_and = true;
+	}
+
 	if(composed_number_.empty())
 	{
+		if(is_insert_and)
+		{
+			translated_word_sentence_.push_back("and");
+		}
+
 		translated_word_sentence_.push_back(word);
 		return;
 	}
+
 
 	//translated_word_sentence_.push_back(composed_number_);
 	std::cout << "The non numerical word is " << word << std::endl;
 	auto it = std::find(original_word_sentence_.begin(), original_word_sentence_.end(), word);
 	insert_stored_numeric();
+
+	if(is_insert_and)
+	{
+		translated_word_sentence_.push_back("and");
+	}
+
 	translated_word_sentence_.push_back(word);
 }
 
