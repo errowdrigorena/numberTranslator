@@ -1,0 +1,15 @@
+/*
+ * GuidonDecimalTranslationCommand.hpp
+ *
+ *  Created on: Jan 15, 2023
+ *      Author: iban
+ */
+
+#ifndef INCLUDE_CORE_GUIDONDECIMALTRANSLATIONCOMMAND_HPP_
+#define INCLUDE_CORE_GUIDONDECIMALTRANSLATIONCOMMAND_HPP_
+
+
+
+
+
+#endif /* INCLUDE_CORE_GUIDONDECIMALTRANSLATIONCOMMAND_HPP_ */

@@ -11,6 +11,7 @@
 #include <Core/SentenceTranslationDataModel.hpp>
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace core
 {
@@ -32,7 +33,7 @@ private:
 	void insert_stored_numeric();
 	void force_writing_actual_composition();
 
-	Sentence_translation_data_model translation_model_;
+	std::shared_ptr<Sentence_translation_data_model> translation_model_;
 };
 
 }
