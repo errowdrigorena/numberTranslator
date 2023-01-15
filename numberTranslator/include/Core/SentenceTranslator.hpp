@@ -11,12 +11,11 @@
 #include <Core/SentenceTranslationDataModel.hpp>
 #include <string>
 #include <vector>
-#include <memory>
 
 namespace core
 {
 
-class Sentence_translator : public std::enable_shared_from_this<Sentence_translator>
+class Sentence_translator
 {
 public:
 	Sentence_translator(std::vector<std::string> word_sentence);
