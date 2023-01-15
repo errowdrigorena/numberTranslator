@@ -358,6 +358,7 @@ TEST_F(NumberCompositionHandlerTestFixture, unitHundredAndGuidonDecimalMilliondA
 	  ASSERT_EQ("999999999.", translateSentence(sentence));
 }
 
+//from here an on UNEXPECTED BEHAVIOUR
 TEST_F(NumberCompositionHandlerTestFixture, oneBillion)
 {
   std::vector<std::string> sentence{{"One"}, {"Billion"}, {"coins"}};
