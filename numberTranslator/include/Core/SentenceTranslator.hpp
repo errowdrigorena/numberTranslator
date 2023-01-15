@@ -8,26 +8,13 @@
 #ifndef INCLUDE_CORE_SENTENCE_TRANSLATOR_HPP_
 #define INCLUDE_CORE_SSENTENCE_TRANSLATOR_HPP_
 
+#include <Core/SentenceTranslationDataModel.hpp>
 #include <string>
 #include <vector>
 #include <memory>
 
 namespace core
 {
-enum class Composition_operations
-{
-	none,
-	units,
-	decenes,
-	hundreds,
-	hundred_and,
-	thowsands,
-	thowsand_and,
-	millions,
-	million_and,
-	billions,
-	billion_and
-};
 
 class Sentence_translator : public std::enable_shared_from_this<Sentence_translator>
 {
@@ -46,14 +33,7 @@ private:
 	void insert_stored_numeric();
 	void force_writing_actual_composition();
 
-	//bool is_composed_;
-	std::string composed_number_;
-
-	std::vector<std::string> original_word_sentence_;
-	std::vector<std::string> translated_word_sentence_;
-
-	Composition_operations last_operation_;
-
+	Sentence_translation_data_model translation_model_;
 };
 
 }
