@@ -4,19 +4,23 @@
  *  Created on: Jan 14, 2023
  *      Author: iban
  */
-#include "../../include/Core/SentenceTranslator.hpp"
-
+#include <Core/SentenceTranslator.hpp>
 #include <Core/AuxiliarOperations.hpp>
 #include <Core/TranslationOperations.hpp>
+
+#include <Core/GuidonDecimalTranslationCommand.hpp>
+#include <Core/DecimalTranslationCommand.hpp>
+#include <Core/UnitTranslationCommand.hpp>
+#include <Core/TeensTranslationCommand.hpp>
+#include <Core/HundredTranslationCommand.hpp>
+#include <Core/ThowsandTranslationCommand.hpp>
+#include <Core/MillionTranslationCommand.hpp>
+#include <Core/BillionTranslationCommand.hpp>
+#include <Core/DefaultTranslationCommand.hpp>
+
 #include <algorithm>
 #include <iostream> //delete
 
-namespace core
-{
-	bool is_decene_continuable(Composition_operations operation);
-	bool is_decene_and(Composition_operations operation);
-	bool is_three_zero_multiple_prefix(Composition_operations operation);
-}
 namespace core
 {
 
@@ -41,39 +45,8 @@ void Sentence_translator::compose_number(std::string word)
 
 	if( it_guidon != word.end() )
 	{
-		std::string first_half{word.begin(), it_guidon};
-		auto translated_first_half = translate_decimals(first_half);
-
-		if(translated_first_half)
-		{
-			std::string second_half{it_guidon+1, word.end()};
-			auto translated_second_half = translate_units(second_half);
-
-			if(translated_second_half)
-			{
-				if(!is_decene_continuable(translation_model_->last_operation_))
-				{
-					force_writing_actual_composition();
-				}
-
-
-				if(is_decene_and(translation_model_->last_operation_))
-				{
-					translation_model_->composed_number_.erase(translation_model_->composed_number_.end()-2,
-							translation_model_->composed_number_.end());
-				}
-
-
-				translation_model_->composed_number_.push_back(translated_first_half);
-				translation_model_->composed_number_.push_back(translated_second_half);
-
-				translation_model_->last_operation_ = Composition_operations::decenes;
-			}
-		}
-		else
-		{
-			translation_model_->translated_word_sentence_.push_back(word);
-		}
+		Guidon_decimal_translation_command guidon_translator{};
+		guidon_translator.execute(translation_model_, word);
 
 		return;
 	}
@@ -82,22 +55,8 @@ void Sentence_translator::compose_number(std::string word)
 
 	if(translated_units)
 	{
-		if(translation_model_->last_operation_ == Composition_operations::decenes
-				|| translation_model_->last_operation_ == Composition_operations::hundreds
-				|| translation_model_->last_operation_ == Composition_operations::thowsands
-				|| translation_model_->last_operation_ == Composition_operations::units
-				|| translation_model_->last_operation_ == Composition_operations::millions)
-		{
-			force_writing_actual_composition();
-		}
-
-		if(translation_model_->last_operation_ != Composition_operations::none)
-		{
-			translation_model_->composed_number_.pop_back();
-		}
-
-		translation_model_->composed_number_.push_back(translated_units);
-		translation_model_->last_operation_ = Composition_operations::units;
+		Unit_translation_command unit_translator{};
+		unit_translator.execute(translation_model_, word);
 
 		return;
 	}
@@ -106,42 +65,19 @@ void Sentence_translator::compose_number(std::string word)
 
 	if(translated_decimals)
 	{
-		if(!is_decene_continuable(translation_model_->last_operation_))
-		{
-			force_writing_actual_composition();
-		}
-
-		if(is_decene_and(translation_model_->last_operation_))
-		{
-			translation_model_->composed_number_.erase(translation_model_->composed_number_.end()-2,
-					translation_model_->composed_number_.end());
-		}
-
-		translation_model_->composed_number_.push_back(translated_decimals);
-		translation_model_->composed_number_.push_back('0');
-		translation_model_->last_operation_ = Composition_operations::decenes;
+		Decimal_translation_command decimal_translator{};
+		decimal_translator.execute(translation_model_, word);
 
 		return;
 	}
 
 	auto translated_teens = translate_teens(word);
 
-	if(!translated_teens.empty()) //funciona como decimals si se le pasa una cadena a estos
+	if(!translated_teens.empty())
 	{
-		if(!is_decene_continuable(translation_model_->last_operation_))
-		{
-			force_writing_actual_composition();
-		}
+		Teens_translation_command teens_translator{};
+		teens_translator.execute(translation_model_, word);
 
-		if(is_decene_and(translation_model_->last_operation_))
-		{
-			translation_model_->composed_number_.erase(translation_model_->composed_number_.end()-2,
-					translation_model_->composed_number_.end());
-		}
-
-		translation_model_->composed_number_.append(translated_teens);
-
-		translation_model_->last_operation_ = Composition_operations::decenes;
 		return;
 	}
 
@@ -149,30 +85,20 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if(translation_model_->last_operation_ == Composition_operations::units)
 		{
-			if(translation_model_->composed_number_.size() > 2)
-			{
-				translation_model_->composed_number_.erase(translation_model_->composed_number_.end()-3,
-						translation_model_->composed_number_.end()-1);
-			}
+			Hundred_translation_command hundred_translator{};
+			hundred_translator.execute(translation_model_, word);
 
-			translation_model_->composed_number_.append("00");
-			translation_model_->last_operation_ = Composition_operations::hundreds;
 			return;
 		}
 	}
 
 	if(is_thowsand(word))
 	{
-		if(translation_model_->composed_number_.size() > 6)
+		if(is_three_zero_multiple_prefix(translation_model_->last_operation_))
 		{
-			translation_model_->composed_number_.erase(translation_model_->composed_number_.end()-6,
-					translation_model_->composed_number_.end()-3);
-		}
+			Thowsand_translation_command thowsand_translator{};
+			thowsand_translator.execute(translation_model_, word);
 
-		if( is_three_zero_multiple_prefix(translation_model_->last_operation_) )
-		{
-			translation_model_->composed_number_.append("000");
-			translation_model_->last_operation_ = Composition_operations::thowsands;
 			return;
 		}
 	}
@@ -181,8 +107,9 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if( is_three_zero_multiple_prefix(translation_model_->last_operation_) )
 		{
-			translation_model_->composed_number_.append("000000");
-			translation_model_->last_operation_ = Composition_operations::millions;
+			Million_translation_command million_translator{};
+			million_translator.execute(translation_model_, word);
+
 			return;
 		}
 	}
@@ -191,8 +118,9 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if( translation_model_->last_operation_ == Composition_operations::units )
 		{
-			translation_model_->composed_number_.append("000000000");
-			translation_model_->last_operation_ = Composition_operations::billions;
+			Billion_translation_command billion_translator{};
+			billion_translator.execute(translation_model_, word);
+
 			return;
 		}
 	}
@@ -216,62 +144,8 @@ void Sentence_translator::compose_number(std::string word)
 		}
 	}
 
-	bool is_insert_and{false };
-
-	if(is_decene_and(translation_model_->last_operation_)) //supports every and
-	{
-		is_insert_and = true;
-	}
-
-	if(translation_model_->composed_number_.empty())
-	{
-		if(is_insert_and)
-		{
-			translation_model_->translated_word_sentence_.push_back("and");
-		}
-
-		translation_model_->translated_word_sentence_.push_back(word);
-		return;
-	}
-
-	insert_stored_numeric();
-
-	if(is_insert_and)
-	{
-		translation_model_->translated_word_sentence_.push_back("and");
-	}
-
-	translation_model_->translated_word_sentence_.push_back(word);
-}
-
-bool is_decene_continuable(Composition_operations operation)
-{
-	bool is_not_decene_continuable = operation == Composition_operations::units
-					|| operation == Composition_operations::hundreds
-					|| operation == Composition_operations::decenes
-					|| operation == Composition_operations::thowsands
-					|| operation == Composition_operations::millions
-					|| operation == Composition_operations::billions;
-
-	return !is_not_decene_continuable;
-}
-
-bool is_decene_and(Composition_operations operation)
-{
-	bool is_decene_and = operation == Composition_operations::hundred_and
-			|| operation == Composition_operations::thowsand_and
-			|| operation == Composition_operations::million_and;
-
-	return is_decene_and;
-}
-
-bool is_three_zero_multiple_prefix(Composition_operations operation)
-{
-	bool is_thowsand_prefix = operation == Composition_operations::units
-			|| operation == Composition_operations::decenes
-			|| operation == Composition_operations::hundreds;
-
-	return is_thowsand_prefix;
+	Default_translation_command default_translator{};
+	default_translator.execute(translation_model_, word);
 }
 
 void Sentence_translator::force_writing_actual_composition()

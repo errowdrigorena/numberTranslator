@@ -8,6 +8,8 @@
 #ifndef SRC_CORE_AUXILIAROPERATIONS_HPP_
 #define SRC_CORE_AUXILIAROPERATIONS_HPP_
 
+#include<Core/SentenceTranslationDataModel.hpp>
+
 #include <string>
 #include <vector>
 
@@ -30,6 +32,12 @@ namespace core
 	bool is_million(std::string& word);
 
 	bool is_billion(std::string& word);
+
+	bool is_decene_continuable(Composition_operations operation);
+
+	bool is_decene_and(Composition_operations operation);
+
+	bool is_three_zero_multiple_prefix(Composition_operations operation);
 }
 
 

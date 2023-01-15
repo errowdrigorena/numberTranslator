@@ -115,6 +115,36 @@ namespace core
 		auto word_lower = convert_to_lowercase(word);
 		return "billion" == word_lower;
 	}
+
+	bool is_decene_continuable(Composition_operations operation)
+	{
+		bool is_not_decene_continuable = operation == Composition_operations::units
+						|| operation == Composition_operations::hundreds
+						|| operation == Composition_operations::decenes
+						|| operation == Composition_operations::thowsands
+						|| operation == Composition_operations::millions
+						|| operation == Composition_operations::billions;
+
+		return !is_not_decene_continuable;
+	}
+
+	bool is_decene_and(Composition_operations operation)
+	{
+		bool is_decene_and = operation == Composition_operations::hundred_and
+				|| operation == Composition_operations::thowsand_and
+				|| operation == Composition_operations::million_and;
+
+		return is_decene_and;
+	}
+
+	bool is_three_zero_multiple_prefix(Composition_operations operation)
+	{
+		bool is_thowsand_prefix = operation == Composition_operations::units
+				|| operation == Composition_operations::decenes
+				|| operation == Composition_operations::hundreds;
+
+		return is_thowsand_prefix;
+	}
 }
 
 
