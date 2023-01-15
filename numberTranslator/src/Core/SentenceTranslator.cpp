@@ -148,17 +148,6 @@ void Sentence_translator::compose_number(std::string word)
 	default_translator.execute(translation_model_, word);
 }
 
-void Sentence_translator::force_writing_actual_composition()
-{
-	insert_stored_numeric();
-	translation_model_->last_operation_ = Composition_operations::none;
-}
-
-bool Sentence_translator::is_composed() const
-{
-	return false;
-}
-
 void Sentence_translator::insert_stored_numeric()
 {
 	translation_model_->translated_word_sentence_.push_back(translation_model_->composed_number_);

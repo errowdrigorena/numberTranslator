@@ -21,17 +21,12 @@ class Sentence_translator
 public:
 	Sentence_translator(std::vector<std::string> word_sentence);
 
-	void compose_number(std::string number);
-
-	bool is_composed() const;
-
 	std::string get_sentence_with_numbers();
-
-	void compose_sentence();
 private:
 	void force_last_numerics();
 	void insert_stored_numeric();
-	void force_writing_actual_composition();
+	void compose_number(std::string word);
+	void compose_sentence();
 
 	std::shared_ptr<Sentence_translation_data_model> translation_model_;
 };
