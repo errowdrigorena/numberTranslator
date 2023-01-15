@@ -162,6 +162,11 @@ void Number_composition_handler::compose_number(std::string word)
 	{
 		if(last_operation_ == Composition_operations::units)
 		{
+			if(composed_number_.size() > 2)
+			{
+				composed_number_.erase(composed_number_.end()-3, composed_number_.end()-1);
+			}
+
 			composed_number_.append("00");
 			last_operation_ = Composition_operations::hundreds;
 			return;

@@ -216,5 +216,11 @@ TEST_F(NumberCompositionHandlerTestFixture, unitThowsandAndTeenNumber)
   ASSERT_EQ("3010.", translateSentence(sentence));
 }
 
+TEST_F(NumberCompositionHandlerTestFixture, unitThowsandAndUnitHundredNumber)
+{
+  std::vector<std::string> sentence{{"Three"}, {"thowsand"}, {"and"}, {"nine"}, {"hundred"}};
+
+  ASSERT_EQ("3900.", translateSentence(sentence));
+}
 
 }
