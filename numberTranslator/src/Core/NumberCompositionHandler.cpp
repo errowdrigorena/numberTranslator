@@ -176,6 +176,11 @@ void Number_composition_handler::compose_number(std::string word)
 
 	if(is_thowsand(word))
 	{
+		if(composed_number_.size() > 6)
+		{
+			composed_number_.erase(composed_number_.end()-6, composed_number_.end()-3);
+		}
+
 		if( is_three_zero_multiple_prefix(last_operation_) )
 		{
 			composed_number_.append("000");

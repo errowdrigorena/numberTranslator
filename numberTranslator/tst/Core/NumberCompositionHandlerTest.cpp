@@ -287,4 +287,75 @@ TEST_F(NumberCompositionHandlerTestFixture, unitMilliondAndUnit)
 	  ASSERT_EQ("2000003.", translateSentence(sentence));
 }
 
+TEST_F(NumberCompositionHandlerTestFixture, unitMilliondAndDecimalNumber)
+{
+	  std::vector<std::string> sentence{{"Two"}, {"million"}, {"and"}, {"forty"}, {"pies"}};
+
+	  ASSERT_EQ("2000040 pies.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitMilliondAndUnitHundredNumber)
+{
+	  std::vector<std::string> sentence{{"Two"}, {"million"}, {"and"}, {"five"}, {"hundred"}};
+
+	  ASSERT_EQ("2000500.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitMilliondAndUnitThowsandAndUnitHundredNumber)
+{
+	  std::vector<std::string> sentence{{"Two"}, {"million"},
+		  {"and"}, {"two"}, {"thowsand"},{"and"}, {"five"}, {"hundred"}};
+
+	  ASSERT_EQ("2002500.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitMilliondAndGuidoDecimalThowsandAndUnitHundredNumber)
+{
+	  std::vector<std::string> sentence{{"five"}, {"million"},
+		  {"and"}, {"sixty-two"}, {"thowsand"},{"and"}, {"nine"}, {"hundred"}};
+
+	  ASSERT_EQ("5062900.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitMilliondAndUnitHunredThowsandAndUnitHundredNumber)
+{
+	  std::vector<std::string> sentence{{"five"}, {"million"},
+		  {"and"}, {"five"}, {"hundred"}, {"thowsand"},{"and"}, {"nine"}, {"hundred"}};
+
+	  ASSERT_EQ("5500900.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitMilliondAndUnitHunredAndGuidonDecimalThowsandAndUnitHundredNumber)
+{
+	  std::vector<std::string> sentence{{"five"}, {"million"},
+		  {"and"}, {"five"}, {"hundred"}, {"and"}, {"sixty-nine"}, {"thowsand"},{"and"}, {"nine"}, {"hundred"}};
+
+	  ASSERT_EQ("5569900.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, teenMilliondAndUnitHunredAndGuidonDecimalThowsandAndUnitHundredNumber)
+{
+	  std::vector<std::string> sentence{{"fourteen"}, {"million"},
+		  {"and"}, {"five"}, {"hundred"}, {"and"}, {"sixty-nine"}, {"thowsand"},{"and"}, {"nine"}, {"hundred"}};
+
+	  ASSERT_EQ("14569900.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredMilliondAndUnitHundredAndGuidonDecimalThowsandAndUnitHundredNumber)
+{
+	  std::vector<std::string> sentence{{"nine"}, {"hundred"}, {"million"},
+		  {"and"}, {"five"}, {"hundred"}, {"and"}, {"sixty-nine"}, {"thowsand"},{"and"}, {"nine"}, {"hundred"}};
+
+	  ASSERT_EQ("900569900.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredAndGuidonDecimalMilliondAndUnitHundredAndGuidonDecimalThowsandAndUnitHundredNumber)
+{
+	  std::vector<std::string> sentence{{"nine"}, {"hundred"}, {"and"}, {"ninety-nine"},{"million"},
+		  {"and"}, {"nine"}, {"hundred"}, {"and"}, {"ninety-nine"}, {"thowsand"},{"and"}, {"nine"}, {"hundred"},
+	  {"and"}, {"ninety-nine"}};
+
+	  ASSERT_EQ("999999999.", translateSentence(sentence));
+}
+
 }
