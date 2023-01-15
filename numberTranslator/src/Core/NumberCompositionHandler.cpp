@@ -46,7 +46,9 @@ void Number_composition_handler::compose_number(std::string word)
 			std::cout << translated_second_half << std::endl;
 			if(translated_second_half)
 			{
-				if(last_operation_ == Composition_operations::units || last_operation_ == Composition_operations::hundreds)
+				if(last_operation_ == Composition_operations::units
+						|| last_operation_ == Composition_operations::hundreds
+						|| last_operation_ == Composition_operations::decenes)
 				{
 					//clean operation
 					std::cout << "Previously units or hundreds" << std::endl;
@@ -82,7 +84,8 @@ void Number_composition_handler::compose_number(std::string word)
 
 		if(last_operation_ == Composition_operations::decenes
 				|| last_operation_ == Composition_operations::hundreds
-				|| last_operation_ == Composition_operations::thowsands)
+				|| last_operation_ == Composition_operations::thowsands
+				|| last_operation_ == Composition_operations::units)
 		{
 			std::cout << "Previously decenes, hundreds or thowsands" << std::endl;
 			force_writing_actual_composition(word);
@@ -115,7 +118,9 @@ void Number_composition_handler::compose_number(std::string word)
 
 	if(translated_decimals)
 	{
-		if(last_operation_ == Composition_operations::units || last_operation_ == Composition_operations::hundreds)
+		if(last_operation_ == Composition_operations::units
+				|| last_operation_ == Composition_operations::hundreds
+				|| last_operation_ == Composition_operations::decenes)
 		{
 			std::cout << "Previously units or hundreds" << std::endl;
 			force_writing_actual_composition(word);
@@ -146,7 +151,9 @@ void Number_composition_handler::compose_number(std::string word)
 	if(!translated_teens.empty()) //funciona como decimals si se le pasa una cadena a estos
 	{
 		std::cout << translated_teens << std::endl;
-		if(last_operation_ == Composition_operations::units || last_operation_ == Composition_operations::hundreds)
+		if(last_operation_ == Composition_operations::units
+				|| last_operation_ == Composition_operations::hundreds
+				|| last_operation_ == Composition_operations::decenes)
 		{
 			std::cout << "Previously units or hundreds" << std::endl;
 			force_writing_actual_composition(word);
