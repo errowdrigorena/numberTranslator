@@ -40,7 +40,7 @@ public:
 	void compose_sentence();
 private:
 	void force_last_numerics();
-	void replace_for_numerics(std::vector<std::string>::iterator it_last_number_word);
+	void insert_stored_numeric();
 	void force_writing_actual_composition(const std::string& word);
 
 	//bool is_composed_;

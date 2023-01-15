@@ -12,6 +12,10 @@
 
 namespace core
 {
+	bool is_decene_continuable(Composition_operations operation);
+}
+namespace core
+{
 
 Number_composition_handler::Number_composition_handler(std::vector<std::string> word_sentence) : composed_number_{},
 		original_word_sentence_{word_sentence}, translated_word_sentence_{}, last_operation_{Composition_operations::none}
@@ -46,9 +50,7 @@ void Number_composition_handler::compose_number(std::string word)
 			std::cout << translated_second_half << std::endl;
 			if(translated_second_half)
 			{
-				if(last_operation_ == Composition_operations::units
-						|| last_operation_ == Composition_operations::hundreds
-						|| last_operation_ == Composition_operations::decenes)
+				if(!is_decene_continuable(last_operation_))
 				{
 					//clean operation
 					std::cout << "Previously units or hundreds" << std::endl;
@@ -61,7 +63,7 @@ void Number_composition_handler::compose_number(std::string word)
 					composed_number_.erase(composed_number_.end()-2, composed_number_.end());
 				}
 
-				//std::cout << "The first word to delete is NOW: " << first_word_to_delete_ << std::endl;
+
 				composed_number_.push_back(translated_first_half);
 				composed_number_.push_back(translated_second_half);
 
@@ -113,9 +115,7 @@ void Number_composition_handler::compose_number(std::string word)
 
 	if(translated_decimals)
 	{
-		if(last_operation_ == Composition_operations::units
-				|| last_operation_ == Composition_operations::hundreds
-				|| last_operation_ == Composition_operations::decenes)
+		if(!is_decene_continuable(last_operation_))
 		{
 			std::cout << "Previously units or hundreds" << std::endl;
 			force_writing_actual_composition(word);
@@ -139,9 +139,7 @@ void Number_composition_handler::compose_number(std::string word)
 	if(!translated_teens.empty()) //funciona como decimals si se le pasa una cadena a estos
 	{
 		std::cout << translated_teens << std::endl;
-		if(last_operation_ == Composition_operations::units
-				|| last_operation_ == Composition_operations::hundreds
-				|| last_operation_ == Composition_operations::decenes)
+		if(!is_decene_continuable(last_operation_))
 		{
 			std::cout << "Previously units or hundreds" << std::endl;
 			force_writing_actual_composition(word);
@@ -201,14 +199,23 @@ void Number_composition_handler::compose_number(std::string word)
 	//translated_word_sentence_.push_back(composed_number_);
 	std::cout << "The non numerical word is " << word << std::endl;
 	auto it = std::find(original_word_sentence_.begin(), original_word_sentence_.end(), word);
-	replace_for_numerics(it);
+	insert_stored_numeric();
 	translated_word_sentence_.push_back(word);
+}
+
+bool is_decene_continuable(Composition_operations operation)
+{
+	bool is_not_decene_continuable = operation == Composition_operations::units
+					|| operation == Composition_operations::hundreds
+					|| operation == Composition_operations::decenes
+					|| operation == Composition_operations::thowsands;
+
+	return !is_not_decene_continuable;
 }
 
 void Number_composition_handler::force_writing_actual_composition(const std::string& word)
 {
-	auto it = std::find(original_word_sentence_.begin(), original_word_sentence_.end(), word);
-	replace_for_numerics(it);
+	insert_stored_numeric();
 	last_operation_ = Composition_operations::none;
 }
 
@@ -217,7 +224,7 @@ bool Number_composition_handler::is_composed() const
 	return false;
 }
 
-void Number_composition_handler::replace_for_numerics(std::vector<std::string>::iterator it_last_number_word)
+void Number_composition_handler::insert_stored_numeric()
 {
 	std::cout << "The first composed number: " << composed_number_ << std::endl;
 
@@ -233,7 +240,7 @@ void Number_composition_handler::force_last_numerics()
 		return;
 	}
 
-	replace_for_numerics(original_word_sentence_.end());
+	insert_stored_numeric();
 }
 
 std::string Number_composition_handler::get_sentence_with_numbers()
@@ -243,26 +250,13 @@ std::string Number_composition_handler::get_sentence_with_numbers()
 	compose_sentence();
 	force_last_numerics();
 
-	std::cout << "original (modified) word sentence " << std::endl;
-	for(auto& word : original_word_sentence_)
-	{
-		std::cout << word << " ";
-		//sentence.append(word);
-		//sentence.append(" ");
-	}
-
-	//sentence.back() = '.';
-
-	std::cout << std::endl << "translated word sentence " << std::endl;
 	for(auto& word : translated_word_sentence_)
 	{
-		std::cout << word << " ";
 		sentence.append(word);
 		sentence.append(" ");
 	}
 	sentence.back() = '.';
 
-	std::cout << std::endl;
 
 	return sentence;
 }
