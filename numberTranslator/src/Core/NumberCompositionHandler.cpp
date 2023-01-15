@@ -14,14 +14,14 @@ namespace core
 {
 
 Number_composition_handler::Number_composition_handler(std::vector<std::string> word_sentence) : composed_number_{},
-		word_sentence_{word_sentence}, last_operation_{Composition_operations::none}
+		original_word_sentence_{word_sentence}, translated_word_sentence_{}, last_operation_{Composition_operations::none}
 {
 
 }
 
 void Number_composition_handler::compose_sentence()
 {
-  for(auto& word : word_sentence_)
+  for(auto& word : original_word_sentence_)
   {
 	  compose_number(word);
   }
@@ -55,22 +55,22 @@ void Number_composition_handler::compose_number(std::string word)
 					force_writing_actual_composition(word);
 				}
 
-				if(last_operation_ == Composition_operations::none)
-				{
-					first_word_to_delete_ = word;
-				}
 
 				if(last_operation_ == Composition_operations::hundred_and)
 				{
 					composed_number_.erase(composed_number_.end()-2, composed_number_.end());
 				}
 
-				std::cout << "The first word to delete is NOW: " << first_word_to_delete_ << std::endl;
+				//std::cout << "The first word to delete is NOW: " << first_word_to_delete_ << std::endl;
 				composed_number_.push_back(translated_first_half);
 				composed_number_.push_back(translated_second_half);
 
 				last_operation_ = Composition_operations::decenes;
 			}
+		}
+		else
+		{
+			translated_word_sentence_.push_back(word);
 		}
 
 		return;
@@ -91,12 +91,7 @@ void Number_composition_handler::compose_number(std::string word)
 			force_writing_actual_composition(word);
 		}
 
-		if(last_operation_ == Composition_operations::none)
-		{
-			first_word_to_delete_ = word;
-			std::cout << "First word to delete now is" << composed_number_ << std::endl;
-		}
-		else
+		if(last_operation_ != Composition_operations::none)
 		{
 			composed_number_.pop_back();
 			std::cout << "Composed number now is" << composed_number_ << std::endl;
@@ -106,7 +101,7 @@ void Number_composition_handler::compose_number(std::string word)
 		last_operation_ = Composition_operations::units;
 
 		std::cout << "WORDS WE HAVE" << std::endl;
-		for(auto word : word_sentence_)
+		for(auto word : original_word_sentence_)
 		{
 			std::cout << word << std::endl;
 		}
@@ -124,13 +119,6 @@ void Number_composition_handler::compose_number(std::string word)
 		{
 			std::cout << "Previously units or hundreds" << std::endl;
 			force_writing_actual_composition(word);
-
-		}
-
-		if(last_operation_ == Composition_operations::none)
-		{
-			first_word_to_delete_ = word;
-			std::cout << "The first word to delete is NOW: " << first_word_to_delete_ << std::endl;
 
 		}
 
@@ -157,13 +145,6 @@ void Number_composition_handler::compose_number(std::string word)
 		{
 			std::cout << "Previously units or hundreds" << std::endl;
 			force_writing_actual_composition(word);
-		}
-
-		if(last_operation_ == Composition_operations::none)
-		{
-			first_word_to_delete_ = word;
-			std::cout << "The first word to delete is NOW: " << first_word_to_delete_ << std::endl;
-
 		}
 
 		if(last_operation_ == Composition_operations::hundred_and)
@@ -213,16 +194,20 @@ void Number_composition_handler::compose_number(std::string word)
 
 	if(composed_number_.empty())
 	{
+		translated_word_sentence_.push_back(word);
 		return;
 	}
 
-	auto it = std::find(word_sentence_.begin(), word_sentence_.end(), word);
+	//translated_word_sentence_.push_back(composed_number_);
+	std::cout << "The non numerical word is " << word << std::endl;
+	auto it = std::find(original_word_sentence_.begin(), original_word_sentence_.end(), word);
 	replace_for_numerics(it);
+	translated_word_sentence_.push_back(word);
 }
 
 void Number_composition_handler::force_writing_actual_composition(const std::string& word)
 {
-	auto it = std::find(word_sentence_.begin(), word_sentence_.end(), word);
+	auto it = std::find(original_word_sentence_.begin(), original_word_sentence_.end(), word);
 	replace_for_numerics(it);
 	last_operation_ = Composition_operations::none;
 }
@@ -234,27 +219,21 @@ bool Number_composition_handler::is_composed() const
 
 void Number_composition_handler::replace_for_numerics(std::vector<std::string>::iterator it_last_number_word)
 {
-	std::cout << "The first word to delete is: " << first_word_to_delete_ << std::endl;
 	std::cout << "The first composed number: " << composed_number_ << std::endl;
 
-	auto it_number_begin = std::find(word_sentence_.begin(), word_sentence_.end(), first_word_to_delete_);
-	*it_number_begin = composed_number_;
+	translated_word_sentence_.push_back(composed_number_);
 
 	composed_number_.clear();
-	first_word_to_delete_.clear();
-
-	word_sentence_.erase(it_number_begin+1, it_last_number_word);
 }
 
 void Number_composition_handler::force_last_numerics()
 {
-	if(first_word_to_delete_.empty())
+	if(composed_number_.empty())
 	{
-		std::cout << "The first word to delete is EMPTY " << std::endl;
 		return;
 	}
 
-	replace_for_numerics(word_sentence_.end());
+	replace_for_numerics(original_word_sentence_.end());
 }
 
 std::string Number_composition_handler::get_sentence_with_numbers()
@@ -264,13 +243,26 @@ std::string Number_composition_handler::get_sentence_with_numbers()
 	compose_sentence();
 	force_last_numerics();
 
-	for(auto& word : word_sentence_)
+	std::cout << "original (modified) word sentence " << std::endl;
+	for(auto& word : original_word_sentence_)
 	{
+		std::cout << word << " ";
+		//sentence.append(word);
+		//sentence.append(" ");
+	}
+
+	//sentence.back() = '.';
+
+	std::cout << std::endl << "translated word sentence " << std::endl;
+	for(auto& word : translated_word_sentence_)
+	{
+		std::cout << word << " ";
 		sentence.append(word);
 		sentence.append(" ");
 	}
-
 	sentence.back() = '.';
+
+	std::cout << std::endl;
 
 	return sentence;
 }

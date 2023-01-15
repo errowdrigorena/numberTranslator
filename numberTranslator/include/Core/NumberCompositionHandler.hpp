@@ -46,8 +46,9 @@ private:
 	//bool is_composed_;
 	std::string composed_number_;
 
-	std::vector<std::string> word_sentence_;
-	std::string first_word_to_delete_;
+	std::vector<std::string> original_word_sentence_;
+	std::vector<std::string> translated_word_sentence_;
+
 	Composition_operations last_operation_;
 
 };

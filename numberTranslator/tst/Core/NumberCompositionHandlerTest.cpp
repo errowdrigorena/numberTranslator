@@ -85,9 +85,9 @@ TEST_F(NumberCompositionHandlerTestFixture, unitHundredAndUnitNumber)
 
 TEST_F(NumberCompositionHandlerTestFixture, unitHundredUnitNumber)
 {
-  std::vector<std::string> sentence{{"One"}, {"hundred"}, {"one"}};
+  std::vector<std::string> sentence{{"One"}, {"hundred"}, {"one"}, {"guys"}};
 
-  ASSERT_EQ("100 1.", translateSentence(sentence));
+  ASSERT_EQ("100 1 guys.", translateSentence(sentence));
 }
 
 TEST_F(NumberCompositionHandlerTestFixture, unitHundredDecimalNumber)
