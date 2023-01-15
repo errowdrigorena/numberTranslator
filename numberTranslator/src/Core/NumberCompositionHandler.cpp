@@ -148,12 +148,29 @@ void Number_composition_handler::compose_number(std::string word)
 
 	auto translated_teens = translate_teens(word);
 
-	if(!translated_teens.empty())
+	if(!translated_teens.empty()) //funciona como decimals si se le pasa una cadena a estos
 	{
 		std::cout << translated_teens << std::endl;
+		if(last_operation_ == Composition_operations::units || last_operation_ == Composition_operations::hundreds)
+		{
+			//clean operation
+			std::cout << "Previously units or hundreds" << std::endl;
+
+			auto it = std::find(word_sentence_.begin(), word_sentence_.end(), word);
+			replace_for_numerics(it);
+			last_operation_ = Composition_operations::none; //call this operation again
+		}
+
 		if(last_operation_ == Composition_operations::none)
 		{
 			first_word_to_delete_ = word;
+			std::cout << "The first word to delete is NOW: " << first_word_to_delete_ << std::endl;
+
+		}
+
+		if(last_operation_ == Composition_operations::hundred_and)
+		{
+			composed_number_.erase(composed_number_.end()-2, composed_number_.end());
 		}
 
 		composed_number_.append(translated_teens);

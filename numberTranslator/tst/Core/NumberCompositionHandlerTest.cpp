@@ -132,4 +132,32 @@ TEST_F(NumberCompositionHandlerTestFixture, unitHundredGuidonDecimalNumber)
   ASSERT_EQ("200 48.", translateSentence(sentence));
 }
 
+TEST_F(NumberCompositionHandlerTestFixture, guidonDecimalHundredNumbers)
+{
+  std::vector<std::string> sentence{{"seventy-seven"}, {"hundred"}};
+
+  ASSERT_EQ("77 hundred.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, teenHundredNumbers)
+{
+  std::vector<std::string> sentence{{"seventeen"}, {"hundred"}};
+
+  ASSERT_EQ("17 hundred.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredAndTeenNumber)
+{
+  std::vector<std::string> sentence{{"Five"}, {"hundred"}, {"and"}, {"ten"}};
+
+  ASSERT_EQ("510.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredTeenNumber)
+{
+  std::vector<std::string> sentence{{"Five"}, {"hundred"}, {"ten"}};
+
+  ASSERT_EQ("500 10.", translateSentence(sentence));
+}
+
 }
