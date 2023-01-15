@@ -28,6 +28,8 @@ namespace core
 	bool is_thowsand(std::string& word);
 
 	bool is_million(std::string& word);
+
+	bool is_billion(std::string& word);
 }
 
 

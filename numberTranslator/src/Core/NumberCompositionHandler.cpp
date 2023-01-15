@@ -90,9 +90,10 @@ void Number_composition_handler::compose_number(std::string word)
 		if(last_operation_ == Composition_operations::decenes
 				|| last_operation_ == Composition_operations::hundreds
 				|| last_operation_ == Composition_operations::thowsands
-				|| last_operation_ == Composition_operations::units)
+				|| last_operation_ == Composition_operations::units
+				|| last_operation_ == Composition_operations::millions)
 		{
-			std::cout << "Previously decenes, hundreds or thowsands" << std::endl;
+			std::cout << "Previously decenes, hundreds or thowsands or millions" << std::endl;
 			force_writing_actual_composition(word);
 		}
 
@@ -194,7 +195,17 @@ void Number_composition_handler::compose_number(std::string word)
 		if( is_three_zero_multiple_prefix(last_operation_) )
 		{
 			composed_number_.append("000000");
-			last_operation_ = Composition_operations::thowsands;
+			last_operation_ = Composition_operations::millions;
+			return;
+		}
+	}
+
+	if(is_billion(word))
+	{
+		if( last_operation_ == Composition_operations::units )
+		{
+			composed_number_.append("000000");
+			last_operation_ = Composition_operations::billions;
 			return;
 		}
 	}
@@ -209,6 +220,11 @@ void Number_composition_handler::compose_number(std::string word)
 		if(last_operation_ == Composition_operations::thowsands)
 		{
 			last_operation_ = Composition_operations::thowsand_and;
+			return;
+		}
+		if(last_operation_ == Composition_operations::millions)
+		{
+			last_operation_ = Composition_operations::million_and;
 			return;
 		}
 	}
@@ -260,7 +276,8 @@ bool is_decene_continuable(Composition_operations operation)
 bool is_decene_and(Composition_operations operation)
 {
 	bool is_decene_and = operation == Composition_operations::hundred_and
-			|| operation == Composition_operations::thowsand_and;
+			|| operation == Composition_operations::thowsand_and
+			|| operation == Composition_operations::million_and;
 
 	return is_decene_and;
 }
