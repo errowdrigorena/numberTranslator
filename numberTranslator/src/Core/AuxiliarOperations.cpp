@@ -103,6 +103,12 @@ namespace core
 		auto word_lower = convert_to_lowercase(word);
 		return "thowsand" == word;
 	}
+
+	bool is_million(std::string& word)
+	{
+		auto word_lower = convert_to_lowercase(word);
+		return "million" == word;
+	}
 }
 
 

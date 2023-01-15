@@ -23,7 +23,9 @@ enum class Composition_operations
 	thowsands,
 	thowsand_and,
 	millions,
+	million_and,
 	billions,
+	billion_and
 };
 
 class Number_composition_handler

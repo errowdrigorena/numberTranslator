@@ -14,7 +14,8 @@ namespace core
 {
 	bool is_decene_continuable(Composition_operations operation);
 	bool is_decene_and(Composition_operations operation);
-	bool is_thowsand_prefix(Composition_operations operation);
+	bool is_three_zero_multiple_prefix(Composition_operations operation);
+	bool is_million_prefix(Composition_operations operation);
 }
 namespace core
 {
@@ -175,9 +176,19 @@ void Number_composition_handler::compose_number(std::string word)
 
 	if(is_thowsand(word))
 	{
-		if( is_thowsand_prefix(last_operation_) )
+		if( is_three_zero_multiple_prefix(last_operation_) )
 		{
 			composed_number_.append("000");
+			last_operation_ = Composition_operations::thowsands;
+			return;
+		}
+	}
+
+	if(is_million(word))
+	{
+		if( is_three_zero_multiple_prefix(last_operation_) )
+		{
+			composed_number_.append("000000");
 			last_operation_ = Composition_operations::thowsands;
 			return;
 		}
@@ -199,7 +210,7 @@ void Number_composition_handler::compose_number(std::string word)
 
 	bool is_insert_and{false };
 
-	if(is_decene_and(last_operation_))
+	if(is_decene_and(last_operation_)) //supports every and
 	{
 		is_insert_and = true;
 	}
@@ -234,7 +245,9 @@ bool is_decene_continuable(Composition_operations operation)
 	bool is_not_decene_continuable = operation == Composition_operations::units
 					|| operation == Composition_operations::hundreds
 					|| operation == Composition_operations::decenes
-					|| operation == Composition_operations::thowsands;
+					|| operation == Composition_operations::thowsands
+					|| operation == Composition_operations::millions
+					|| operation == Composition_operations::billions;
 
 	return !is_not_decene_continuable;
 }
@@ -247,10 +260,11 @@ bool is_decene_and(Composition_operations operation)
 	return is_decene_and;
 }
 
-bool is_thowsand_prefix(Composition_operations operation)
+bool is_three_zero_multiple_prefix(Composition_operations operation)
 {
 	bool is_thowsand_prefix = operation == Composition_operations::units
-			|| operation == Composition_operations::decenes;
+			|| operation == Composition_operations::decenes
+			|| operation == Composition_operations::hundreds;
 
 	return is_thowsand_prefix;
 }

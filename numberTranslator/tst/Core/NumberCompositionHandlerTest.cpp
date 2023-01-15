@@ -273,4 +273,18 @@ TEST_F(NumberCompositionHandlerTestFixture, unitHundredAndGuidonDecimalThowsandA
   ASSERT_EQ("154695.", translateSentence(sentence));
 }
 
+TEST_F(NumberCompositionHandlerTestFixture, unitHundredThowsandNumber)
+{
+  std::vector<std::string> sentence{{"One"}, {"hundred"},{"thowsand"}};
+
+  ASSERT_EQ("100000.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitMilliondAndUnit)
+{
+	  std::vector<std::string> sentence{{"Two"}, {"million"}, {"and"}, {"three"}};
+
+	  ASSERT_EQ("2000003.", translateSentence(sentence));
+}
+
 }

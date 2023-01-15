@@ -26,6 +26,8 @@ namespace core
 	bool is_and(std::string& word);
 
 	bool is_thowsand(std::string& word);
+
+	bool is_million(std::string& word);
 }
 
 
