@@ -160,4 +160,39 @@ TEST_F(NumberCompositionHandlerTestFixture, unitHundredTeenNumber)
   ASSERT_EQ("500 10.", translateSentence(sentence));
 }
 
+TEST_F(NumberCompositionHandlerTestFixture, unitThowsandNumber)
+{
+  std::vector<std::string> sentence{{"One"}, {"thowsand"}, {"times"}};
+
+  ASSERT_EQ("1000 times.", translateSentence(sentence));
+}
+
+TEST_F(NumberCompositionHandlerTestFixture, aThowsandNumber)
+{
+  std::vector<std::string> sentence{{"A"}, {"thowsand"}, {"times"}};
+
+  ASSERT_EQ("A thowsand times.", translateSentence(sentence));
+}
+
+//TEST_F(NumberCompositionHandlerTestFixture, unitThowsandUnitNumber)
+//{
+//  std::vector<std::string> sentence{{"Three"}, {"thowsand"}, {"three"}};
+//
+//  ASSERT_EQ("3000 3.", translateSentence(sentence));
+//}
+//
+//TEST_F(NumberCompositionHandlerTestFixture, unitThowsandAndUnitNumber)
+//{
+//  std::vector<std::string> sentence{{"Three"}, {"thowsand"}, {"and"}, {"three"}};
+//
+//  ASSERT_EQ("3003.", translateSentence(sentence));
+//}
+
+TEST_F(NumberCompositionHandlerTestFixture, unitUnitUnitNumbers)
+{
+  std::vector<std::string> sentence{{"Three"}, {"thow"}, {"one"}};
+
+  ASSERT_EQ("3 2 1.", translateSentence(sentence));
+}
+
 }

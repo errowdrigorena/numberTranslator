@@ -20,6 +20,8 @@ enum class Composition_operations
 	decenes,
 	hundreds,
 	hundred_and,
+	thowsands,
+	thowsand_and,
 	millions,
 	billions,
 };
@@ -29,7 +31,7 @@ class Number_composition_handler
 public:
 	Number_composition_handler(std::vector<std::string> word_sentence);
 
-	void compose_number(std::string);
+	void compose_number(std::string number);
 
 	bool is_composed() const;
 
@@ -39,6 +41,7 @@ public:
 private:
 	void force_last_numerics();
 	void replace_for_numerics(std::vector<std::string>::iterator it_last_number_word);
+	void force_writing_actual_composition(const std::string& word);
 
 	//bool is_composed_;
 	std::string composed_number_;
