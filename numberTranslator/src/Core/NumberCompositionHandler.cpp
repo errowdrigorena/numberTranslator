@@ -13,7 +13,7 @@ namespace core
 {
 
 Number_composition_handler::Number_composition_handler(std::vector<std::string> word_sentence) : composed_number_{},
-		word_sentence_{word_sentence}
+		word_sentence_{word_sentence}, last_operation_{Composition_operations::none}
 {
 
 }
@@ -45,14 +45,15 @@ void Number_composition_handler::compose_number(std::string word)
 			std::cout << translated_second_half << std::endl;
 			if(translated_second_half)
 			{
-				if(composed_number_.empty())
+				if(last_operation_ == Composition_operations::none)
 				{
 					first_word_to_delete_ = word;
 					std::cout << "The first word to delete is NOW: " << first_word_to_delete_ << std::endl;
+					composed_number_.push_back(translated_first_half);
+					composed_number_.push_back(translated_second_half);
 				}
 
-				composed_number_.push_back(translated_first_half);
-				composed_number_.push_back(translated_second_half);
+				last_operation_ = Composition_operations::decenes;
 			}
 		}
 
@@ -63,7 +64,31 @@ void Number_composition_handler::compose_number(std::string word)
 
 	if(translated_units)
 	{
-		std::cout << translated_units << std::endl;
+		std::cout << "Translate units " << translated_units << std::endl;
+
+		if(last_operation_ == Composition_operations::decenes)
+		{
+			std::cout << "Previously decenes" << std::endl;
+
+			auto it = std::find(word_sentence_.begin(), word_sentence_.end(), word);
+			replace_for_numerics(it);
+			last_operation_ = Composition_operations::none;
+		}
+
+		if(last_operation_ == Composition_operations::none)
+		{
+			first_word_to_delete_ = word;
+		}
+
+		composed_number_.push_back(translated_units);
+		last_operation_ = Composition_operations::units;
+
+		std::cout << "WORDS WE HAVE" << std::endl;
+		for(auto word : word_sentence_)
+		{
+			std::cout << word << std::endl;
+		}
+
 		return;
 	}
 
@@ -71,14 +96,26 @@ void Number_composition_handler::compose_number(std::string word)
 
 	if(translated_decimals)
 	{
-		if(composed_number_.empty())
+		if(last_operation_ == Composition_operations::units)
+		{
+			//clean operation
+			std::cout << "Previously units" << std::endl;
+
+			auto it = std::find(word_sentence_.begin(), word_sentence_.end(), word);
+			replace_for_numerics(it);
+			last_operation_ = Composition_operations::none; //call this operation again
+		}
+
+		if(last_operation_ == Composition_operations::none)
 		{
 			first_word_to_delete_ = word;
 			std::cout << "The first word to delete is NOW: " << first_word_to_delete_ << std::endl;
 			composed_number_.push_back(translated_decimals);
 			composed_number_.push_back('0');
+			last_operation_ = Composition_operations::decenes;
 			return;
 		}
+
 
 		return;
 	}
@@ -88,6 +125,14 @@ void Number_composition_handler::compose_number(std::string word)
 	if(!translated_teens.empty())
 	{
 		std::cout << translated_teens << std::endl;
+		if(last_operation_ == Composition_operations::none)
+		{
+			first_word_to_delete_ = word;
+		}
+
+		composed_number_.append(translated_teens);
+
+		last_operation_ = Composition_operations::decenes;
 		return;
 	}
 

@@ -13,6 +13,16 @@
 
 namespace core
 {
+enum class Composition_operations
+{
+	none,
+	units,
+	decenes,
+	hundreds,
+	millions,
+	billions,
+};
+
 class Number_composition_handler
 {
 public:
@@ -34,6 +44,7 @@ private:
 
 	std::vector<std::string> word_sentence_;
 	std::string first_word_to_delete_;
+	Composition_operations last_operation_;
 
 };
 
