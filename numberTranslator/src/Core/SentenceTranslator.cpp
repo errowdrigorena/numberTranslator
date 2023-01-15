@@ -52,7 +52,7 @@ void Sentence_translator::compose_number(std::string word)
 			{
 				if(!is_decene_continuable(last_operation_))
 				{
-					force_writing_actual_composition(word);
+					force_writing_actual_composition();
 				}
 
 
@@ -86,7 +86,7 @@ void Sentence_translator::compose_number(std::string word)
 				|| last_operation_ == Composition_operations::units
 				|| last_operation_ == Composition_operations::millions)
 		{
-			force_writing_actual_composition(word);
+			force_writing_actual_composition();
 		}
 
 		if(last_operation_ != Composition_operations::none)
@@ -106,7 +106,7 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if(!is_decene_continuable(last_operation_))
 		{
-			force_writing_actual_composition(word);
+			force_writing_actual_composition();
 		}
 
 		if(is_decene_and(last_operation_))
@@ -127,7 +127,7 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if(!is_decene_continuable(last_operation_))
 		{
-			force_writing_actual_composition(word);
+			force_writing_actual_composition();
 		}
 
 		if(is_decene_and(last_operation_))
@@ -268,7 +268,7 @@ bool is_three_zero_multiple_prefix(Composition_operations operation)
 	return is_thowsand_prefix;
 }
 
-void Sentence_translator::force_writing_actual_composition(const std::string& word)
+void Sentence_translator::force_writing_actual_composition()
 {
 	insert_stored_numeric();
 	last_operation_ = Composition_operations::none;

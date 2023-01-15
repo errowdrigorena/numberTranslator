@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace core
 {
@@ -28,7 +29,7 @@ enum class Composition_operations
 	billion_and
 };
 
-class Sentence_translator
+class Sentence_translator : public std::enable_shared_from_this<Sentence_translator>
 {
 public:
 	Sentence_translator(std::vector<std::string> word_sentence);
@@ -43,7 +44,7 @@ public:
 private:
 	void force_last_numerics();
 	void insert_stored_numeric();
-	void force_writing_actual_composition(const std::string& word);
+	void force_writing_actual_composition();
 
 	//bool is_composed_;
 	std::string composed_number_;
