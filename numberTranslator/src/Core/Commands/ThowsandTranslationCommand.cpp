@@ -5,7 +5,7 @@
  *      Author: iban
  */
 
-#include <Core/ThowsandTranslationCommand.hpp>
+#include <Core/Commands/ThowsandTranslationCommand.hpp>
 #include <Core/AuxiliarOperations.hpp>
 
 namespace core

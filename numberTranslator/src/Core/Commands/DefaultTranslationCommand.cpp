@@ -5,7 +5,7 @@
  *      Author: iban
  */
 
-#include <Core/DefaultTranslationCommand.hpp>
+#include <Core/Commands/DefaultTranslationCommand.hpp>
 #include <Core/AuxiliarOperations.hpp>
 
 namespace core

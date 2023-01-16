@@ -8,15 +8,15 @@
 #include <Core/AuxiliarOperations.hpp>
 #include <Core/TranslationOperations.hpp>
 
-#include <Core/GuidonDecimalTranslationCommand.hpp>
-#include <Core/DecimalTranslationCommand.hpp>
-#include <Core/UnitTranslationCommand.hpp>
-#include <Core/TeensTranslationCommand.hpp>
-#include <Core/HundredTranslationCommand.hpp>
-#include <Core/ThowsandTranslationCommand.hpp>
-#include <Core/MillionTranslationCommand.hpp>
-#include <Core/BillionTranslationCommand.hpp>
-#include <Core/DefaultTranslationCommand.hpp>
+#include <Core/Commands/GuidonDecimalTranslationCommand.hpp>
+#include <Core/Commands/DecimalTranslationCommand.hpp>
+#include <Core/Commands/UnitTranslationCommand.hpp>
+#include <Core/Commands/TeensTranslationCommand.hpp>
+#include <Core/Commands/HundredTranslationCommand.hpp>
+#include <Core/Commands/ThowsandTranslationCommand.hpp>
+#include <Core/Commands/MillionTranslationCommand.hpp>
+#include <Core/Commands/BillionTranslationCommand.hpp>
+#include <Core/Commands/DefaultTranslationCommand.hpp>
 
 #include <algorithm>
 

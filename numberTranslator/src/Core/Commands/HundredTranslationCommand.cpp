@@ -5,7 +5,7 @@
  *      Author: iban
  */
 
-#include <Core/HundredTranslationCommand.hpp>
+#include <Core/Commands/HundredTranslationCommand.hpp>
 #include <Core/AuxiliarOperations.hpp>
 
 namespace core

@@ -5,7 +5,7 @@
  *      Author: iban
  */
 
-#include <Core/GuidonDecimalTranslationCommand.hpp>
+#include <Core/Commands/GuidonDecimalTranslationCommand.hpp>
 #include <Core/TranslationOperations.hpp>
 #include <Core/AuxiliarOperations.hpp>
 

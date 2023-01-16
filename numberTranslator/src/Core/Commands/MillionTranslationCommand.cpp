@@ -5,7 +5,7 @@
  *      Author: iban
  */
 
-#include <Core/MillionTranslationCommand.hpp>
+#include <Core/Commands/MillionTranslationCommand.hpp>
 
 namespace core
 {

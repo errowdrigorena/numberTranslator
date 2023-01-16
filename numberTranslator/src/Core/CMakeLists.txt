@@ -1,16 +1,9 @@
 add_library(Core TranslationOperations.cpp 
 				AuxiliarOperations.cpp
 				SentenceTranslator.cpp
-				GuidonDecimalTranslationCommand.cpp
-				ASentenceTranslationCommand.cpp
-				DecimalTranslationCommand.cpp
-				UnitTranslationCommand.cpp
-				TeensTranslationCommand.cpp
-				HundredTranslationCommand.cpp
-				ThowsandTranslationCommand.cpp
-				MillionTranslationCommand.cpp
-				BillionTranslationCommand.cpp
-				DefaultTranslationCommand.cpp
 				Translator.cpp)
 
-target_include_directories(Core PUBLIC include)
+add_subdirectory(Commands)
+target_link_libraries(Core PRIVATE Commands)
+
+target_include_directories(Core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")

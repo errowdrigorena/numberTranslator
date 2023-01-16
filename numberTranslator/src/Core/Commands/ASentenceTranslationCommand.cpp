@@ -4,7 +4,7 @@
  *  Created on: Jan 15, 2023
  *      Author: iban
  */
-#include<Core/ASentenceTranslationCommand.hpp>
+#include<Core/Commands/ASentenceTranslationCommand.hpp>
 
 namespace core
 {

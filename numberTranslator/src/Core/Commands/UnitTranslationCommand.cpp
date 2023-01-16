@@ -6,7 +6,7 @@
  */
 
 
-#include <Core/UnitTranslationCommand.hpp>
+#include <Core/Commands/UnitTranslationCommand.hpp>
 #include <Core/TranslationOperations.hpp>
 #include <Core/AuxiliarOperations.hpp>
 
