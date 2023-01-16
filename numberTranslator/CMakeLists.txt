@@ -22,7 +22,7 @@ add_subdirectory(src)
 add_subdirectory(tst)
 
 add_executable(word_converter "${CMAKE_CURRENT_SOURCE_DIR}/src/numberTranslator.cpp")
-target_link_libraries(word_converter PRIVATE Core)
+target_link_libraries(word_converter PRIVATE Core OutputInterfaces)
 
 #tests
 #copy test auxiliars
