@@ -49,4 +49,13 @@ TEST(AuxiliarOperationTest, sliceSentenceIntoWords)
 	EXPECT_EQ(expected_content, sentence_in_words);
 }
 
+TEST(AuxiliarOperationTest, writeFile)
+{
+	write_file("AuxiliarFiles/test_writting.txt", "Hello");
+	auto file_content = read_file("AuxiliarFiles/test_writting.txt");
+
+	std::string expected_content{"Hello" };
+	EXPECT_EQ(expected_content, file_content);
+}
+
 }

@@ -22,11 +22,11 @@ namespace core
 	    return lowercase_word;
 	}
 
-	std::string read_file(const std::string& fileName) noexcept(false)
+	std::string read_file(const std::string& file_name) noexcept(false)
 	{
 		std::string file_content{};
 
-		std::ifstream infile(fileName);
+		std::ifstream infile(file_name);
 
 		if(!infile.is_open())
 		{
@@ -41,6 +41,15 @@ namespace core
 		}
 
 		return file_content;
+	}
+
+	void write_file(const std::string& file_name, const std::string& content)
+	{
+		std::ofstream output_file(file_name);
+
+		output_file << content;
+
+		output_file.close();
 	}
 
 	std::vector<std::string> get_sentences(const std::string& text)

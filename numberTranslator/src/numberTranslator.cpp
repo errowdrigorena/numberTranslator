@@ -4,6 +4,7 @@
 #include <Core/Translator.hpp>
 #include <OutputInterfaces/DisplayerSubject.hpp>
 #include <OutputInterfaces/ConsoleOutputObserver.hpp>
+#include <OutputInterfaces/FileOutputObserver.hpp>
 
 void start_translation(std::string input_file_name, std::string output_file_name = {});
 void provide_help();
@@ -41,8 +42,6 @@ int main(int argc, char **argv)
 
 void start_translation(std::string input_file_name, std::string output_file_name)
 {
-	std::cout << "The translation is in process. \n";
-
 	core::Translator file_translator{input_file_name};
 
 	output_interfaces::Displayer_subject displayer_subject{};
@@ -50,12 +49,14 @@ void start_translation(std::string input_file_name, std::string output_file_name
 	std::shared_ptr<output_interfaces::IObserver> console_observer
 		= std::make_shared<output_interfaces::Console_output_observer>();
 	displayer_subject.attach(console_observer);
-	//std::cout << file_translator.get_translated_text();
 
 	//todo implement
 	if(!output_file_name.empty())
 	{
-		std::cout << "output file is: " << output_file_name << ". \n";
+		std::shared_ptr<output_interfaces::IObserver> file_observer
+			= std::make_shared<output_interfaces::File_output_observer>(output_file_name);
+		displayer_subject.attach(file_observer);
+
 	}
 	else
 	{
