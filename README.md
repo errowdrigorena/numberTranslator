@@ -2,7 +2,7 @@
 ## What does NumberTranslator do?
 This project generates an executable file called *word_convert* which is able to read a file, separate in sentences that file taking the period character as sentence end, and replace every number from one to one billion (one billion included) in words and translate it to a numerical one.
 ## How to install
-Ensure that you have a working and configured CMake and you are connected to the Internet.
+Ensure that you have a working and configured CMake and you are connected to the Internet.  
 Clone this repository.  
 Open a terminal, or terminal like, and go to the numberTranslator folder which is at the level of the LICENSE file.  
 Once there:  
