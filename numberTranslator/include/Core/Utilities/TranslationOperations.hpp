@@ -12,6 +12,8 @@
 
 namespace core
 {
+namespace utilities
+{
 	//output is an ASCII code number for (1-9). 0 if senseless translation
 	char translate_units(const std::string& word);
 
@@ -20,6 +22,8 @@ namespace core
 
 	//output is an ASCII code number for (2-9) (20 -> 2, 30 -> 3 ...). 0 if senseless translation
 	char translate_decimals(const std::string& word);
-}
+
+} //end utilities
+} //end core
 
 #endif /* INCLUDE_CORE_TRANSLATIONOPERATIONS_HPP_ */

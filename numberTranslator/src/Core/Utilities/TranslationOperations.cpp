@@ -11,11 +11,16 @@
 
 namespace core
 {
+namespace utilities
+{
 	template<typename T>
 	T translate(const std::string& key, const std::unordered_map<std::string, T> dictionary);
-}
+} //end utilities
+} //end core
 
 namespace core
+{
+namespace utilities
 {
 	char translate_units(const std::string& word)
 	{
@@ -85,6 +90,7 @@ namespace core
 		return output;
 	}
 
-}
+} //end utilities
+} //end core
 
 

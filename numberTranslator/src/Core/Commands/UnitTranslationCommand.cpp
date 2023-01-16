@@ -27,7 +27,7 @@ namespace commands
 
 void Unit_translation_command::execute(model_ptr model, std::string word)
 {
-	auto translated_units = translate_units(word);
+	auto translated_units = utilities::translate_units(word);
 
 	if(!is_unit_composable(model))
 	{

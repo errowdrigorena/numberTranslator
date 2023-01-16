@@ -15,6 +15,8 @@
 
 namespace core
 {
+namespace utilities
+{
 	std::string convert_to_lowercase(const std::string& word);
 
 	std::string read_file(const std::string& fileName);
@@ -39,8 +41,9 @@ namespace core
 	bool is_decene_and(Composition_operations operation);
 
 	bool is_three_zero_multiple_prefix(Composition_operations operation);
-}
 
+} //end utilities
+} //end core
 
 
 #endif /* SRC_CORE_AUXILIAROPERATIONS_HPP_ */

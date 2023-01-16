@@ -13,6 +13,9 @@
 
 namespace core
 {
+namespace utilities
+{
+
 	std::string convert_to_lowercase(const std::string& word)
 	{
 		std::string lowercase_word{};
@@ -154,6 +157,6 @@ namespace core
 
 		return is_thowsand_prefix;
 	}
-}
-
+} //end utilities
+} //end core
 

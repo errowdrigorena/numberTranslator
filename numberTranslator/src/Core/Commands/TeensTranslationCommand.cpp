@@ -16,14 +16,14 @@ namespace commands
 
 void Teens_translation_command::execute(model_ptr model, std::string word)
 {
-	auto translated_teens = translate_teens(word);
+	auto translated_teens = utilities::translate_teens(word);
 
-	if(!is_decene_continuable(model->last_operation_))
+	if(!utilities::is_decene_continuable(model->last_operation_))
 	{
 		force_writing_actual_composition(model);
 	}
 
-	if(is_decene_and(model->last_operation_))
+	if(utilities::is_decene_and(model->last_operation_))
 	{
 		model->composed_number_.erase(model->composed_number_.end()-2,
 				model->composed_number_.end());

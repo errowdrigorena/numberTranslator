@@ -50,7 +50,7 @@ void Sentence_translator::compose_number(std::string word)
 		return;
 	}
 
-	auto translated_units = translate_units(word);
+	auto translated_units = utilities::translate_units(word);
 
 	if(translated_units)
 	{
@@ -60,7 +60,7 @@ void Sentence_translator::compose_number(std::string word)
 		return;
 	}
 
-	auto translated_decimals= translate_decimals(word);
+	auto translated_decimals= utilities::translate_decimals(word);
 
 	if(translated_decimals)
 	{
@@ -70,7 +70,7 @@ void Sentence_translator::compose_number(std::string word)
 		return;
 	}
 
-	auto translated_teens = translate_teens(word);
+	auto translated_teens = utilities::translate_teens(word);
 
 	if(!translated_teens.empty())
 	{
@@ -80,7 +80,7 @@ void Sentence_translator::compose_number(std::string word)
 		return;
 	}
 
-	if(is_hundred(word))
+	if(utilities::is_hundred(word))
 	{
 		if(translation_model_->last_operation_ == Composition_operations::units)
 		{
@@ -91,9 +91,9 @@ void Sentence_translator::compose_number(std::string word)
 		}
 	}
 
-	if(is_thowsand(word))
+	if(utilities::is_thowsand(word))
 	{
-		if(is_three_zero_multiple_prefix(translation_model_->last_operation_))
+		if(utilities::is_three_zero_multiple_prefix(translation_model_->last_operation_))
 		{
 			commands::Thowsand_translation_command thowsand_translator{};
 			thowsand_translator.execute(translation_model_, word);
@@ -102,9 +102,9 @@ void Sentence_translator::compose_number(std::string word)
 		}
 	}
 
-	if(is_million(word))
+	if(utilities::is_million(word))
 	{
-		if( is_three_zero_multiple_prefix(translation_model_->last_operation_) )
+		if( utilities::is_three_zero_multiple_prefix(translation_model_->last_operation_) )
 		{
 			commands::Million_translation_command million_translator{};
 			million_translator.execute(translation_model_, word);
@@ -113,7 +113,7 @@ void Sentence_translator::compose_number(std::string word)
 		}
 	}
 
-	if(is_billion(word))
+	if(utilities::is_billion(word))
 	{
 		if( translation_model_->last_operation_ == Composition_operations::units )
 		{
@@ -124,7 +124,7 @@ void Sentence_translator::compose_number(std::string word)
 		}
 	}
 
-	if(is_and(word))
+	if(utilities::is_and(word))
 	{
 		if(translation_model_->last_operation_ == Composition_operations::hundreds)
 		{

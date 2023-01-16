@@ -19,7 +19,7 @@ File_output_observer::File_output_observer(std::string file_name) :
 
 void File_output_observer::update(const std::string& text)
 {
-	core::write_file(file_name_, text);
+	core::utilities::write_file(file_name_, text);
 }
 
 

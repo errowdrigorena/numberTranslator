@@ -11,6 +11,8 @@
 
 namespace core
 {
+namespace utilities
+{
 
 TEST(AuxiliarOperationTest, lowerConversion)
 {
@@ -58,4 +60,5 @@ TEST(AuxiliarOperationTest, writeFile)
 	EXPECT_EQ(expected_content, file_content);
 }
 
-}
+} //end utilities
+} //end core

@@ -18,8 +18,8 @@ Translator::Translator(const std::string& inputFileName) : sentences_{}, transla
 {
 	try
 	{
-		auto file_content = read_file(inputFileName);
-		sentences_ = get_sentences(file_content);
+		auto file_content = utilities::read_file(inputFileName);
+		sentences_ = utilities::get_sentences(file_content);
 	}
 	catch(std::exception& exception)
 	{
@@ -37,7 +37,7 @@ std::string Translator::get_translated_text()
 	//todo: obtain translation
 	for(auto& sentence : sentences_)
 	{
-		auto word_divided_sentence = get_words(sentence);
+		auto word_divided_sentence = utilities::get_words(sentence);
 		Sentence_translator sentence_translator{word_divided_sentence};
 
 		auto translated_sentence = sentence_translator.get_sentence_with_numbers();

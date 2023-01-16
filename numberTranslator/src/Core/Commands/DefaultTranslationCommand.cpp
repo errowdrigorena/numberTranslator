@@ -17,7 +17,7 @@ void Default_translation_command::execute(model_ptr model, std::string word)
 {
 	bool is_insert_and{false };
 
-	if(is_decene_and(model->last_operation_)) //supports every and
+	if(utilities::is_decene_and(model->last_operation_)) //supports every and
 	{
 		is_insert_and = true;
 	}

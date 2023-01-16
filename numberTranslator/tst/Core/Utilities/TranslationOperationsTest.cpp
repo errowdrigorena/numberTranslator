@@ -11,6 +11,8 @@
 
 namespace core
 {
+namespace utilities
+{
 
 using Word_translation_result = std::tuple<std::string, char, bool>;
 
@@ -130,6 +132,6 @@ TEST_P(Teens_fixture_test, WordToTeenTest)
   }
 }
 
-}
-
+} //end utilities
+} //end core
 
