@@ -7,6 +7,7 @@
 
 #include <Core/Translator.hpp>
 #include <Core/AuxiliarOperations.hpp>
+#include <Core/SentenceTranslator.hpp>
 
 #include <iostream>
 
@@ -26,14 +27,24 @@ Translator::Translator(const std::string& inputFileName) : sentences_{}, transla
 	}
 }
 
-std::string Translator::get_translated_text() const
+std::string Translator::get_translated_text()
 {
-	if(translated_text_)
+	if(!translated_text_.empty())
 	{
 		return translated_text_;
 	}
 
 	//todo: obtain translation
+	for(auto& sentence : sentences_)
+	{
+		auto word_divided_sentence = get_words(sentence);
+		Sentence_translator sentence_translator{word_divided_sentence};
+
+		auto translated_sentence = sentence_translator.get_sentence_with_numbers();
+		translated_text_.append(translated_sentence);
+		translated_text_.push_back('\n');
+	}
+
 	return translated_text_;
 }
 

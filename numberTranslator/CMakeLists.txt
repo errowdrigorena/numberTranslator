@@ -21,8 +21,8 @@ include_directories(include)
 add_subdirectory(src)
 add_subdirectory(tst)
 
-add_executable(NumberTranslator "${CMAKE_CURRENT_SOURCE_DIR}/src/numberTranslator.cpp")
-target_link_libraries(NumberTranslator PRIVATE Core)
+add_executable(word_converter "${CMAKE_CURRENT_SOURCE_DIR}/src/numberTranslator.cpp")
+target_link_libraries(word_converter PRIVATE Core)
 
 #tests
 #copy test auxiliars

@@ -19,7 +19,7 @@ class Translator
 public:
 	explicit Translator(const std::string& inputFileName);
 
-	std::string get_translated_text() const;
+	std::string get_translated_text();
 
 private:
 	std::vector<std::string> sentences_;

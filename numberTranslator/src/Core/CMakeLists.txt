@@ -10,6 +10,7 @@ add_library(Core TranslationOperations.cpp
 				ThowsandTranslationCommand.cpp
 				MillionTranslationCommand.cpp
 				BillionTranslationCommand.cpp
-				DefaultTranslationCommand.cpp)
+				DefaultTranslationCommand.cpp
+				Translator.cpp)
 
 target_include_directories(Core PUBLIC include)

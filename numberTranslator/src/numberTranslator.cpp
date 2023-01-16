@@ -1,6 +1,7 @@
 #include <iostream>
 #include <optional>
 #include <string.h>
+#include <Core/Translator.hpp>
 
 void start_translation(std::string input_file_name, std::string output_file_name = {});
 void provide_help();
@@ -39,6 +40,10 @@ int main(int argc, char **argv)
 void start_translation(std::string input_file_name, std::string output_file_name)
 {
 	std::cout << "The translation is in process. \n";
+
+	core::Translator file_translator{input_file_name};
+	std::cout << file_translator.get_translated_text();
+
 	//todo implement
 	if(!output_file_name.empty())
 	{

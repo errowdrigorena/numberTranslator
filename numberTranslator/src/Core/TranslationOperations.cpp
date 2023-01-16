@@ -8,7 +8,6 @@
 #include <Core/TranslationOperations.hpp>
 
 #include <unordered_map>
-#include <iostream> //delete
 
 namespace core
 {
@@ -83,7 +82,6 @@ namespace core
 		};
 
 		auto output = translate(word, decimals_to_numerical);
-		std::cout << "translate decimal " << output << std::endl; //delete
 		return output;
 	}
 
