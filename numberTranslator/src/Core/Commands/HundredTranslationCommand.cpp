@@ -9,6 +9,8 @@
 
 namespace core
 {
+namespace commands
+{
 
 void Hundred_translation_command::execute(model_ptr model, std::string word)
 {
@@ -22,6 +24,5 @@ void Hundred_translation_command::execute(model_ptr model, std::string word)
 	model->last_operation_ = Composition_operations::hundreds;
 }
 
-}
-
-
+} //end commands
+} //end core

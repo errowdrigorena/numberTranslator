@@ -11,6 +11,8 @@
 
 namespace core
 {
+namespace commands
+{
 
 void Decimal_translation_command::execute(model_ptr model, std::string word)
 {
@@ -32,6 +34,5 @@ void Decimal_translation_command::execute(model_ptr model, std::string word)
 	model->last_operation_ = Composition_operations::decenes;
 }
 
-}
-
-
+} //end commands
+} //end core

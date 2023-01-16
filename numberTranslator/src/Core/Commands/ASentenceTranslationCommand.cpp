@@ -8,6 +8,8 @@
 
 namespace core
 {
+namespace commands
+{
 
 void ASentence_translation_command::insert_stored_numeric(model_ptr model)
 {
@@ -22,4 +24,5 @@ void ASentence_translation_command::force_writing_actual_composition(model_ptr m
 	model->last_operation_ = Composition_operations::none;
 }
 
-}
+} // end commands
+} // end core

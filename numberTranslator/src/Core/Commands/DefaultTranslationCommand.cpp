@@ -10,6 +10,8 @@
 
 namespace core
 {
+namespace commands
+{
 
 void Default_translation_command::execute(model_ptr model, std::string word)
 {
@@ -41,6 +43,7 @@ void Default_translation_command::execute(model_ptr model, std::string word)
 	model->translated_word_sentence_.push_back(word);
 }
 
-}
+} //end commands
+} //end core
 
 

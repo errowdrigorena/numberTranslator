@@ -13,6 +13,8 @@
 
 namespace core
 {
+namespace commands
+{
 
 void Guidon_decimal_translation_command::execute(model_ptr model, std::string word)
 {
@@ -55,7 +57,8 @@ void Guidon_decimal_translation_command::execute(model_ptr model, std::string wo
 		}
 
 	}
-}
+} //end commands
+} //end core
 
 };
 

@@ -16,6 +16,8 @@ using model_ptr = std::shared_ptr<core::Sentence_translation_data_model>;
 
 namespace core
 {
+namespace commands
+{
 
 class ASentence_translation_command
 {
@@ -28,7 +30,8 @@ public:
 	void force_writing_actual_composition(model_ptr model);
 };
 
-}
+} // end commands
+} // end core
 
 
 

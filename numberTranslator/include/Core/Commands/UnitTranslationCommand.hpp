@@ -12,7 +12,8 @@
 
 namespace core
 {
-
+namespace commands
+{
 class Unit_translation_command: public ASentence_translation_command
 {
 public:
@@ -21,9 +22,7 @@ public:
 	void execute(model_ptr model, std::string word) override;
 };
 
-}
-
-
-
+} // end commands
+} // end core
 
 #endif /* INCLUDE_CORE_UNITTRANSLATIONCOMMAND_HPP_ */

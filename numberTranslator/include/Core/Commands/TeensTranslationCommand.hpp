@@ -12,6 +12,8 @@
 
 namespace core
 {
+namespace commands
+{
 
 class Teens_translation_command: public ASentence_translation_command
 {
@@ -21,6 +23,7 @@ public:
 	void execute(model_ptr model, std::string word) override;
 };
 
-}
+} // end commands
+} // end core
 
 #endif /* INCLUDE_CORE_TEENSTRANSLATIONCOMMAND_HPP_ */

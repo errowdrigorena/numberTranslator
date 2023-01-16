@@ -12,6 +12,8 @@
 
 namespace core
 {
+namespace commands
+{
 
 class Billion_translation_command: public ASentence_translation_command
 {
@@ -21,7 +23,8 @@ public:
 	void execute(model_ptr model, std::string word) override;
 };
 
-}
+} // end commands
+} // end core
 
 
 

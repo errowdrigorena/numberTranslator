@@ -12,10 +12,17 @@
 
 namespace core
 {
+namespace commands
+{
+
 bool is_unit_composable(model_ptr model);
-}
+
+} //end commands
+} //end core
 
 namespace core
+{
+namespace commands
 {
 
 void Unit_translation_command::execute(model_ptr model, std::string word)
@@ -47,5 +54,5 @@ bool is_unit_composable(model_ptr model)
 	return !imposible_to_compose;
 }
 
-}
-
+} //end commands
+} //end core

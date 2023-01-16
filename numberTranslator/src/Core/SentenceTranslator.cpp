@@ -44,7 +44,7 @@ void Sentence_translator::compose_number(std::string word)
 
 	if( it_guidon != word.end() )
 	{
-		Guidon_decimal_translation_command guidon_translator{};
+		commands::Guidon_decimal_translation_command guidon_translator{};
 		guidon_translator.execute(translation_model_, word);
 
 		return;
@@ -54,7 +54,7 @@ void Sentence_translator::compose_number(std::string word)
 
 	if(translated_units)
 	{
-		Unit_translation_command unit_translator{};
+		commands::Unit_translation_command unit_translator{};
 		unit_translator.execute(translation_model_, word);
 
 		return;
@@ -64,7 +64,7 @@ void Sentence_translator::compose_number(std::string word)
 
 	if(translated_decimals)
 	{
-		Decimal_translation_command decimal_translator{};
+		commands::Decimal_translation_command decimal_translator{};
 		decimal_translator.execute(translation_model_, word);
 
 		return;
@@ -74,7 +74,7 @@ void Sentence_translator::compose_number(std::string word)
 
 	if(!translated_teens.empty())
 	{
-		Teens_translation_command teens_translator{};
+		commands::Teens_translation_command teens_translator{};
 		teens_translator.execute(translation_model_, word);
 
 		return;
@@ -84,7 +84,7 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if(translation_model_->last_operation_ == Composition_operations::units)
 		{
-			Hundred_translation_command hundred_translator{};
+			commands::Hundred_translation_command hundred_translator{};
 			hundred_translator.execute(translation_model_, word);
 
 			return;
@@ -95,7 +95,7 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if(is_three_zero_multiple_prefix(translation_model_->last_operation_))
 		{
-			Thowsand_translation_command thowsand_translator{};
+			commands::Thowsand_translation_command thowsand_translator{};
 			thowsand_translator.execute(translation_model_, word);
 
 			return;
@@ -106,7 +106,7 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if( is_three_zero_multiple_prefix(translation_model_->last_operation_) )
 		{
-			Million_translation_command million_translator{};
+			commands::Million_translation_command million_translator{};
 			million_translator.execute(translation_model_, word);
 
 			return;
@@ -117,7 +117,7 @@ void Sentence_translator::compose_number(std::string word)
 	{
 		if( translation_model_->last_operation_ == Composition_operations::units )
 		{
-			Billion_translation_command billion_translator{};
+			commands::Billion_translation_command billion_translator{};
 			billion_translator.execute(translation_model_, word);
 
 			return;
@@ -143,7 +143,7 @@ void Sentence_translator::compose_number(std::string word)
 		}
 	}
 
-	Default_translation_command default_translator{};
+	commands::Default_translation_command default_translator{};
 	default_translator.execute(translation_model_, word);
 }
 
