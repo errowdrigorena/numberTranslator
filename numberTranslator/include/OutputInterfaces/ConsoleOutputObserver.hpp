@@ -13,14 +13,11 @@
 namespace output_interfaces
 {
 
-class Console_output_observer : public IObserver//, public std::enable_shared_from_this<Console_output_observer>
+class Console_output_observer : public IObserver
 {
 public:
   ~Console_output_observer() = default;
   void update(const std::string& text) override;
-  //void subscribe(std::shared_ptr<ISubject> subject) override;
-private:
-	std::weak_ptr<ISubject> subject_;
 };
 
 }

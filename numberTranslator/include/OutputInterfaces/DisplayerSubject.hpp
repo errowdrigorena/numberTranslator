@@ -9,6 +9,7 @@
 #define INCLUDE_OUTPUTINTERFACES_DISPLAYERSUBJECT_HPP_
 
 #include <OutputInterfaces/ISubject.hpp>
+#include <OutputInterfaces/IObserver.hpp>
 #include <set>
 
 namespace output_interfaces

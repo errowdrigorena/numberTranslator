@@ -7,7 +7,7 @@
 #ifndef INCLUDE_OUTPUTINTERFACES_ISUBJECT_HPP_
 #define INCLUDE_OUTPUTINTERFACES_ISUBJECT_HPP_
 
-#include <OutputInterfaces/IObserver.hpp>
+#include<OutputInterfaces/IObserver.hpp>
 
 namespace output_interfaces
 {

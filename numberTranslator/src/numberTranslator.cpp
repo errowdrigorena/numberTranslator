@@ -2,6 +2,8 @@
 #include <optional>
 #include <string.h>
 #include <Core/Translator.hpp>
+#include <OutputInterfaces/DisplayerSubject.hpp>
+#include <OutputInterfaces/ConsoleOutputObserver.hpp>
 
 void start_translation(std::string input_file_name, std::string output_file_name = {});
 void provide_help();
@@ -42,7 +44,13 @@ void start_translation(std::string input_file_name, std::string output_file_name
 	std::cout << "The translation is in process. \n";
 
 	core::Translator file_translator{input_file_name};
-	std::cout << file_translator.get_translated_text();
+
+	output_interfaces::Displayer_subject displayer_subject{};
+
+	std::shared_ptr<output_interfaces::IObserver> console_observer
+		= std::make_shared<output_interfaces::Console_output_observer>();
+	displayer_subject.attach(console_observer);
+	//std::cout << file_translator.get_translated_text();
 
 	//todo implement
 	if(!output_file_name.empty())
@@ -51,8 +59,10 @@ void start_translation(std::string input_file_name, std::string output_file_name
 	}
 	else
 	{
-		std::cout << "output file doesn't exist. \n";
+		std::cerr << "output file doesn't exist. \n";
 	}
+
+	displayer_subject.shareText(file_translator.get_translated_text());
 }
 
 void provide_help()

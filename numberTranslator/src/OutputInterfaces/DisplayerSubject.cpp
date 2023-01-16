@@ -6,6 +6,8 @@
  */
 
 #include <OutputInterfaces/DisplayerSubject.hpp>
+#include <OutputInterfaces/IObserver.hpp>
+
 #include <algorithm>
 
 namespace output_interfaces

@@ -11,8 +11,6 @@
 #include <memory>
 #include <string>
 
-class ISubject;
-
 namespace output_interfaces
 {
 
@@ -21,7 +19,6 @@ class IObserver
 public:
   virtual ~IObserver() = default;
   virtual void update(const std::string& text) = 0;
-  //virtual void subscribe(std::shared_ptr<ISubject> subject) = 0;
 };
 
 }
