@@ -9,4 +9,4 @@ add_library(Commands GuidonDecimalTranslationCommand.cpp
 				BillionTranslationCommand.cpp
 				DefaultTranslationCommand.cpp)
 
-target_include_directories(Commands PUBLIC include)
+target_include_directories(Commands PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")

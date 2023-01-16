@@ -6,7 +6,6 @@
  */
 
 #include <Core/Commands/HundredTranslationCommand.hpp>
-#include <Core/AuxiliarOperations.hpp>
 
 namespace core
 {

@@ -5,7 +5,7 @@
  *      Author: iban
  */
 
-#include <Core/AuxiliarOperations.hpp>
+#include <Core/Utilities/AuxiliarOperations.hpp>
 #include <gtest/gtest.h>
 #include <tuple>
 

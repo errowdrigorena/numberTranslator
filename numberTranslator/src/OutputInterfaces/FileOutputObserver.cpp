@@ -6,7 +6,7 @@
  */
 
 #include<OutputInterfaces/FileOutputObserver.hpp>
-#include<Core/AuxiliarOperations.hpp>
+#include<Core/Utilities/AuxiliarOperations.hpp>
 
 namespace output_interfaces
 {

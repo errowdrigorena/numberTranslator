@@ -6,7 +6,7 @@
  */
 
 #include <Core/Commands/ThowsandTranslationCommand.hpp>
-#include <Core/AuxiliarOperations.hpp>
+#include <Core/Utilities/AuxiliarOperations.hpp>
 
 namespace core
 {

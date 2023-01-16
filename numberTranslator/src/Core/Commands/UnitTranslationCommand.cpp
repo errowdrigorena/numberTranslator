@@ -7,8 +7,8 @@
 
 
 #include <Core/Commands/UnitTranslationCommand.hpp>
-#include <Core/TranslationOperations.hpp>
-#include <Core/AuxiliarOperations.hpp>
+#include <Core/Utilities/TranslationOperations.hpp>
+#include <Core/Utilities/AuxiliarOperations.hpp>
 
 namespace core
 {

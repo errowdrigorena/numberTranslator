@@ -22,15 +22,15 @@ add_subdirectory(src)
 add_subdirectory(tst)
 
 add_executable(word_converter "${CMAKE_CURRENT_SOURCE_DIR}/src/numberTranslator.cpp")
-target_link_libraries(word_converter PRIVATE Commands Core OutputInterfaces)
+target_link_libraries(word_converter PRIVATE Commands Utilities Core OutputInterfaces)
 
 #tests
 #copy test auxiliars
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/tst/AuxiliarFiles" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 enable_testing()
 #Maybe not the best idea
-add_executable(NumberTranslatorTestCore "${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/TranslationOperationsTest.cpp"
-									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/AuxiliarOperationsTest.cpp"
+add_executable(NumberTranslatorTestCore "${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/Utilities/TranslationOperationsTest.cpp"
+									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/Utilities/AuxiliarOperationsTest.cpp"
 									"${CMAKE_CURRENT_SOURCE_DIR}/tst/Core/SentenceTranslatorTest.cpp")
 target_link_libraries(NumberTranslatorTestCore 
 	PRIVATE 

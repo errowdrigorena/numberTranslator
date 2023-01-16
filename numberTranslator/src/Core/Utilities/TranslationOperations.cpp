@@ -4,8 +4,8 @@
  *  Created on: Jan 13, 2023
  *      Author: iban
  */
-#include <Core/AuxiliarOperations.hpp>
-#include <Core/TranslationOperations.hpp>
+#include <Core/Utilities/AuxiliarOperations.hpp>
+#include <Core/Utilities/TranslationOperations.hpp>
 
 #include <unordered_map>
 

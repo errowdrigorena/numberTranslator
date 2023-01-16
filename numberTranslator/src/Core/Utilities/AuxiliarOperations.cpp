@@ -4,7 +4,7 @@
  *  Created on: Jan 14, 2023
  *      Author: iban
  */
-#include <Core/AuxiliarOperations.hpp>
+#include <Core/Utilities/AuxiliarOperations.hpp>
 
 #include <algorithm>
 #include <fstream>

@@ -5,8 +5,8 @@
  *      Author: iban
  */
 #include <Core/SentenceTranslator.hpp>
-#include <Core/AuxiliarOperations.hpp>
-#include <Core/TranslationOperations.hpp>
+#include <Core/Utilities/AuxiliarOperations.hpp>
+#include <Core/Utilities/TranslationOperations.hpp>
 
 #include <Core/Commands/GuidonDecimalTranslationCommand.hpp>
 #include <Core/Commands/DecimalTranslationCommand.hpp>

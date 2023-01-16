@@ -6,7 +6,7 @@
  */
 
 #include <Core/Translator.hpp>
-#include <Core/AuxiliarOperations.hpp>
+#include <Core/Utilities/AuxiliarOperations.hpp>
 #include <Core/SentenceTranslator.hpp>
 
 #include <iostream>
